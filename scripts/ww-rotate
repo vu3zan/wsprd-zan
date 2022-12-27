@@ -1,0 +1,22 @@
+#!/bin/bash
+# bash file 'wwrotate' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to rotate 6 band files by renaming them as 1 to 6 in rotation triggered by crontab at 9.05am every day
+# 
+mv ~/wsprd/6mR  ~/wsprd/0mR
+# this file 0m5 is a temporary placeholder file, to be renamed as 1m5 at the end 
+sleep 2
+mv ~/wsprd/5mR  ~/wsprd/6mR
+sleep 2
+mv ~/wsprd/4mR  ~/wsprd/5mR
+sleep 2
+mv ~/wsprd/3mR  ~/wsprd/4mR
+sleep 2
+mv ~/wsprd/2mR  ~/wsprd/3mR
+sleep 2
+mv ~/wsprd/1mR  ~/wsprd/2mR
+sleep 2
+mv ~/wsprd/0mR  ~/wsprd/1mR
+sleep 2
+
+# the earlier file 1mR has become 2mR, earlier file 2mR has become 3mR and so on 
+# sleep 2 seconds is to make sure the renaming is over

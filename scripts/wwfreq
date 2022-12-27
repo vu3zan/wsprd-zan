@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# Bash file 'wwfreq' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to list Dial frequencies of band hopping in a file ~/wsprd/wlogs/wsfc.log
+# and to analyze with less as default without giving any file name.
+# Also analyze the backup logs in $HOME/wsprd/wlogs/backup/ by giving b1 to b8
+# for 8 days backup logs.
+# Used thus "wwfreq bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+ echo Bash file 'wwfreq' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wsfc.log
+ echo to list Dial frequencies of band hopping in a file ~/wsprd/wlogs/wsfc.log  >> ~/wsprd/wlogs/wsfc.log
+ echo and to read with less as default without giving any file name.  >> ~/wsprd/wlogs/wsfc.log
+ echo Also read the backup logs in $HOME/wsprd/wlogs/backup/ by giving b1 to b8  >> ~/wsprd/wlogs/wsfc.log
+ echo for 8 days backup logs.  >> ~/wsprd/wlogs/wsfc.log
+ echo >> ~/wsprd/wlogs/wsfc.log
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wsfc.log
+ echo >> ~/wsprd/wlogs/wsfc.log
+
+grep 'Dial freq.' "$fullfile" >> ~/wsprd/wlogs/wsfc.log
+
+# cat ~/wsprd/wlogs/wsfc.log
+less  ~/wsprd/wlogs/wsfc.log
+wc  -l  ~/wsprd/wlogs/wsfc.log 
+echo "(less 8 lines used for description heading)"
+echo
+
+# end of program

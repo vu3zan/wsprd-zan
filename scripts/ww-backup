@@ -1,0 +1,57 @@
+#!/bin/bash
+# bash file 'wwbackup' for Guenael wsprd log ~/wsprd/wlogs/wsprd.log 
+# to update 8 sequential bucket backups (~/wsprd/wlogs/backup/b1.log to 8), 
+# triggered by crontab at 9am every day
+# and also add the valid & invalid WSPR entries to cumulative logs wwvalidlist.log & wwinvalidlist.log
+
+# first kill any rtlsdr_wsprd daemon that may be running, to avoid possible problems
+	pgrep rtlsdr_wsprd > /dev/null 2>&1
+		if [ $? -eq 0 ]; then
+			killall rtlsdr_wsprd &>> ~/wsprd/wlogs/wsprd.log
+        fi
+    sleep 15
+# the above gives time for the kill process to terminate successfully
+
+# Synchronize the system time with NTP, once a day
+	sudo timedatectl set-ntp true
+	
+# SEQUENTIAL BUCKET BACKUPS -- total 8 backups
+# First delete oldest file i.e b8.log. 
+# Next rename 2nd oldest as oldest i.e b7.log as b8.log, and so on.
+# Lastly rename wsprd.log as b1.log
+rm ~/wsprd/wlogs/backup/b8.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b7.log  ~/wsprd/wlogs/backup/b8.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b6.log  ~/wsprd/wlogs/backup/b7.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b5.log  ~/wsprd/wlogs/backup/b6.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b4.log  ~/wsprd/wlogs/backup/b5.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b3.log  ~/wsprd/wlogs/backup/b4.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b2.log  ~/wsprd/wlogs/backup/b3.log
+sleep 2
+mv ~/wsprd/wlogs/backup/b1.log  ~/wsprd/wlogs/backup/b2.log
+sleep 2
+mv ~/wsprd/wlogs/wsprd.log  ~/wsprd/wlogs/backup/b1.log
+sleep 2
+
+# sleep 2 seconds is to make sure the renaming is over
+
+# now create new wsprd.log with a heading line
+echo "log file for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log 
+date >> ~/wsprd/wlogs/wsprd.log
+
+# now adds valid wspr entries in latest backup 
+# i.e. ~/wsprd/wlogs/backup/wwbk1.log to ~/wsprd/wlogs/wwvalidlist.log
+grep 'Spot :' ~/wsprd/wlogs/backup/wwbk1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
+echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
+# date >> ~/wsprd/wlogs/wwvalidlist.log
+
+# now adds invalid wspr entries in latest backup to ~/wsprd/wlogs/wwinvalidlist.log
+grep -E '<...>' ~/wsprd/wlogs/backup/wwbk1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
+echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
+# date >> ~/wsprd/wlogs/wwinvalidlist.log
+

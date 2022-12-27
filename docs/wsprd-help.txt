@@ -1,0 +1,32 @@
+rtlsdr_wsprd, a simple WSPR daemon for RTL receivers
+
+Use:	rtlsdr_wsprd -f frequency -c callsign -l locator [options]
+	-f dial frequency [(,k,M) Hz] or band string
+	   If band string is used, the default dial frequency will used.
+	   Bands: LF MF 160m 80m 60m 40m 30m 20m 17m 15m 12m 10m 6m 4m 2m 1m25 70cm 23cm
+	-c your callsign (12 chars max)
+	-l your locator grid (6 chars max)
+Receiver extra options:
+	-g gain [0-49] (default: 29)
+	-a auto gain (off by default, no parameter)
+	-o frequency offset (default: 0)
+	-p crystal correction factor (ppm) (default: 0)
+	-u upconverter (default: 0, example: 125M)
+	-d direct sampling [0,1,2] (default: 0, 1 for I input, 2 for Q input)
+	-n max iterations (default: 0 = infinite loop)
+	-i device index (in case of multiple receivers, default: 0)
+Decoder extra options:
+	-H use the hash table (could caught signal 11 on RPi, no parameter)
+	-Q quick mode, doesn't dig deep for weak signals, no parameter
+	-S single pass mode, no subtraction (same as original wsprd), no parameter
+	-x do not report any spots on web clusters (WSPRnet, PSKreporter...)
+Debugging options:
+	-t decoder self-test (generate a signal & decode), no parameter
+	-w write received signal and exit [filename prefix]
+	-r read signal with .iq or .c2 format, decode and exit [filename]
+	   (raw format: 375sps, float 32 bits, 2 channels)
+Other options:
+	--help show list of options
+	--version show version of program
+Example:
+	rtlsdr_wsprd -f 2m -c A1XYZ -l AB12cd -g 29 -o -4200

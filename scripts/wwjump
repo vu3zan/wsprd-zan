@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# last mod on 24-12-2022 by VU3ZAN Sunil Aruldas
+# Bash file 'wwjump' to include $HOME/wspr/scripts in the path
+# to enable scripts there to be run from anywhere
+# NOTE: only one executable version of this script should be there, in $HOME
+# Usage :  '. wwjump' 
+echo
+cd wsprd/scripts
+pwd
+ls
+echo

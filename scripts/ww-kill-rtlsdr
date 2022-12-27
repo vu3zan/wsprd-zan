@@ -1,0 +1,6 @@
+#!/bin/bash
+# bash file 'ww-kill-rtlsdr' for Guenael rtlsdr_wsprd  
+# to stop the running of the process
+
+sudo killall rtlsdr_wsprd
+echo "  ## WSPRD DAEMON TERMINATED  ##  (until next activation by crontab)"

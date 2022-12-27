@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# Bash file 'wwlog' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to read with less as default without giving any file name.
+# Also read the backup logs in $HOME/wsprd/wlogs/backup/ 
+# Used thus "wwlog bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# Also read the wwvalidlist.log & wwvalidlist.log in $HOME/wsprd/wlogs/ by 
+# giving 'valid' & 'invalid'. 
+
+# sudo less ~/wsprd/wlogs/wsprd.log 
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		valid)
+			genfile2="ww""$genfile""list.log"
+			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		invalid)
+			genfile2="ww""$genfile""list.log"
+			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only, or 'valid' or 'invalid'"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+less "$fullfile"
+wc -l "$fullfile"
+# -NO DESC- echo "(less 8 lines used for description heading)"
+echo
+
+# end of program

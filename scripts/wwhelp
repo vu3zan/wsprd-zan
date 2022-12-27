@@ -1,0 +1,5 @@
+#!/bin/bash
+# bash file 'wwhelp' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to find which wspr band is under use
+
+cat ~/wsprd/scripts/wsprd-bin-list.txt

@@ -1,0 +1,64 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log , and 8 backup logs in ~/wsprd/wlogs/backup/
+# to remove Spots with 'A000AA' & '<...>' while putting all "VU" Spots in a file ~/wsprd/wlogs/wwvu.log
+# Used thus "wwquick bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# (Note: Only name to be given, the '.log' extension is added automatically)
+# Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		valid)
+			genfile2="ww""$genfile""list.log"
+			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+ echo Bash file 'wwvu' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwvu.log
+ echo in ~/wsprd/wlogs/backup/  >> ~/wsprd/wlogs/wwvu.log
+ echo To remove Spots with "A000AA" and "<...>" >> ~/wsprd/wlogs/wwvu.log
+ echo to put all Spots, and then all NON 'A000AA' Spots, counted frequency wise, >> ~/wsprd/wlogs/wwquick-valid.log
+ echo while putting all 'VU' [Indian] Spots in a file ~/wsprd/wlogs/wwvu.log  >> ~/wsprd/wlogs/wwvu.log
+ echo >> ~/wsprd/wlogs/wwvu.log
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwvu.log
+ echo >> ~/wsprd/wlogs/wwvu.log
+ 
+ 
+
+
+  grep 'Spot : ' ~/wsprd/wlogs/wwvalidlist.log | grep 'VU2\|VU3' | grep -v 'A000AA\|<...>' >> ~/wsprd/wlogs/wwvu.log
+    grep 'Spot : ' ~/wsprd/wlogs/wwvalidlist.log | grep 'VU2\|VU3' -c >> ~/wsprd/wlogs/wwvu.log
+
+
+ # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>"  >> ~/wsprd/wlogs/wwvu.log
+ # grep 'Spot : ' "$fullfile" | grep 'VU3' | grep -v '<...>'   >> ~/wsprd/wlogs/wwvu.log
+ # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>" -c   >> ~/wsprd/wlogs/wwvu.log
+
+ less ~/wsprd/wlogs/wwvu.log
+  wc  -l ~/wsprd/wlogs/wwvu.log 
+  echo "(less 8 lines used for description heading)"
+  echo
+  
+  
+  # end of file

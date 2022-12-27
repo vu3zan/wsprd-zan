@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to put all Spots in a file ~/wsprd/wlogs/spot1.log
+# to read with the less utility as default without giving any file name.
+# Also read the backup logs in $HOME/wsprd/wlogs/backup/ 
+# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 daily log files b1.log to b8.log.
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+echo Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/spot1.log
+echo to put all Spots in a file ~/wsprd/wlogs/spot1.log  >> ~/wsprd/wlogs/spot1.log
+echo to read with the less utility as default, without giving any file name.  >> ~/wsprd/wlogs/spot1.log
+echo Also read the backup logs in $HOME/wsprd/wlogs/backup/   >> ~/wsprd/wlogs/spot1.log
+echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 log files b1.log to b8.log.  >> ~/wsprd/wlogs/spot1.log
+echo >> ~/wsprd/wlogs/spot1.log
+echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/spot1.log
+echo "                    UTC" >> ~/wsprd/wlogs/spot1.log
+echo  >> ~/wsprd/wlogs/spot1.log
+
+
+grep 'Spot :' "$fullfile" >> ~/wsprd/wlogs/spot1.log
+
+less ~/wsprd/wlogs/spot1.log
+echo
+wc  -l ~/wsprd/wlogs/spot1.log 
+echo "(less 9 lines used for description heading)"
+echo
+
+# end of file

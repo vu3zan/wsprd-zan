@@ -1,0 +1,38 @@
+# Last mod 24-11-2022 by VU3ZAN Sunil Aruldas
+# This script name is 1m5, ORIGINALLY for 6m, located in ~/wsprd, using rtlsdr_sdr daemon located in 
+# ~/rtlsdr-wsprd, and arranges a form of band hopping.
+# NOTE: FILE NAME WILL BE ROTATED WITH SERIAL NUMBERS 1/2/3/4/5/6m5  etc WHILE HOPPING WSPR BANDS
+# This launches rtlsdr_wsprd daemon for a given band, selected by crontab entries referring to script names.
+# See the ~/wsprd/samples/crontab-example.txt file for suggested entries.
+# Each band is accessed for half an hour. With 6 bands, the set takes 3 hours, and repeats 8 times in 24 hours.
+# So each band is accessed for half an hour in each 3 hour period.
+# At 0900 hours daily a backup is taken of ~/wsprd/wlogs/wsprd.log, and script names are rotated.
+# So files 1m5, 2m5, 3m5, 4m5, 5m5, and 6m5 are renamed as 2m5, 3m5, 4m5, 5m5, 6m5, and 1m5.
+# Rinse and repeat, as VK6FLAB Ono says
+
+# NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on github. RESPECT!!
+
+# I had earlier added "00" after the frequency, as it was found necessary 
+#   e.g. Frequency to be used = "50.293000M"
+# but from Dec 2022 the band can be used instead, here 6m
+
+ Running rtlsdr_wsprd without any parameters will provide an extensive list of parameters available
+# File ~/wsprd/samples/wsprd-help.txt has the same details
+# File ~/wsprd/samples/wspr-freq.txt has a list of WSPR frequencies
+
+
+ This script name is ## 1m5, ORIGINALLY for ## 6m, located in ~/wsprd 
+# Script names with serial numbers 1/2/3/4/5/6m5 originally refer to WSPR bands 6m/10m/15m/20m/40m/80m,
+# and are launched by crontab entries referring to script names, and thus different bands are accessed
+# at different times.
+# HOWEVER the script names will change daily on a rotation basis [this is normal!], in order to provide a 
+# pseudo random access to different bands at different times of day.
+# See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
+
+# bash file 'wwbackup' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to update 8 sequential backups (wwbackup1 to 8), triggered by crontab at 9am every day
+# and also add the valid & invalid wspr entries to cumulative logs wwvalidlist.log & wwinvalidlist.log
+
+# Synchronize the system time with ntp, once a day
+#	sudo timedatectl set-ntp true
+

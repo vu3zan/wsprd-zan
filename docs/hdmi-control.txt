@@ -1,0 +1,39 @@
+Turning HDMI ON & OFF for WSPRD
+
+Turning off may reduce interference and will reduce power requirements
+
+1. OFF 
+/opt/vc/bin/tvservice -o
+
+2. ON
+NOTE : ATTACH TV OR MONITOR FIRST,OTHERWISE FBSET COMMAND REPORTS "INVALID ARGUMENT"
+for TV --- 
+/opt/vc/bin/tvservice -p
+fbset -depth 8; 
+for MONITOR --- 
+/opt/vc/bin/tvservice -p
+fbset -depth 16
+
+3. STATUS
+/opt/vc/bin/tvservice -s
+
+
+
+pi@raspberrypi:~ $ tvservice -h
+Usage: tvservice [OPTION]...
+  -p, --preferred                   Power on HDMI with preferred settings
+  -e, --explicit="GROUP MODE DRIVE" Power on HDMI with explicit GROUP (CEA, DMT, CEA_3D_SBS, CEA_3D_TB, CEA_3D_FP, CEA_3D_FS)
+                                      MODE (see --modes) and DRIVE (HDMI, DVI)
+  -t, --ntsc                        Use NTSC frequency for HDMI mode (e.g. 59.94Hz rather than 60Hz)
+  -c, --sdtvon="MODE ASPECT [P]"    Power on SDTV with MODE (PAL or NTSC) and ASPECT (4:3 14:9 or 16:9) Add P for progressive
+  -o, --off                         Power off the display
+  -m, --modes=GROUP                 Get supported modes for GROUP (CEA, DMT)
+  -M, --monitor                     Monitor HDMI events
+  -s, --status                      Get HDMI status
+  -a, --audio                       Get supported audio information
+  -d, --dumpedid <filename>         Dump EDID information to file
+  -j, --json                        Use JSON format for --modes output
+  -n, --name                        Print the device ID from EDID
+  -l, --list                        List all attached devices
+  -v, --device                      Specify the device to use (see --list)
+  -h, --help                        Print this information

@@ -1,0 +1,96 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# bash file 'wwquick' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs in ~/wsprd/wlogs/backup/
+# to put all Spots, and then all NON 'A000AA'& '<...>' Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwquick-back.log
+# Used thus "wwquick bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# (Note: Only name to be given, the '.log' extension is added automatically)
+# Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		valid)
+			genfile2="ww""$genfile""list.log"
+			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+ echo Bash file wwquick for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwquick-back.log
+ echo in ~/wsprd/wlogs/backup/ >> ~/wsprd/wlogs/wwquick-back.log
+ echo To first count ALL Spots frequency-wise, and then all VALID Spots, >> ~/wsprd/wlogs/wwquick-back.log
+ echo and record the count in a file ~/wsprd/wlogs/wwquick-back.log >> ~/wsprd/wlogs/wwquick-back.log
+ echo >> ~/wsprd/wlogs/wwquick-back.log
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwquick-back.log
+ echo >> ~/wsprd/wlogs/wwquick-back.log
+ echo ---------------------------- >> ~/wsprd/wlogs/wwquick-back.log
+ echo ALL SPOTs >> ~/wsprd/wlogs/wwquick-back.log
+ echo    Counting for 6m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '50\.2' "$fullfile" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 10m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '28\.1' "$fullfile" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 15m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '21\.0' "$fullfile" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 20m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '14\.0' "$fullfile" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 40m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  ' 7\.0' "$fullfile"  -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 80m >> ~/wsprd/wlogs/wwquick-back.log
+ echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick-back.log
+ grep  ' 3\.5' "$fullfile" -c >> ~/wsprd/wlogs/wwquick-back.log
+ # allowing for old 80m wspr frequency still in use 
+
+
+ echo ---------------------------- >> ~/wsprd/wlogs/wwquick-back.log
+ echo
+ echo VALID SPOTs ONLY - WITHOUT 'A000AA' and '<...>' cases >> ~/wsprd/wlogs/wwquick-back.log
+ echo    Counting for 6m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '50\.2' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 10m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '28\.1' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 15m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '21\.0' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 20m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  '14\.0' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 40m >> ~/wsprd/wlogs/wwquick-back.log
+ grep  ' 7\.0' "$fullfile" | grep -v -E "A000AA|<...>"  -c >> ~/wsprd/wlogs/wwquick-back.log
+
+ echo    Counting for 80m >> ~/wsprd/wlogs/wwquick-back.log
+ echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick-back.log
+ grep  ' 3\.5' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick-back.log
+ # allowing for old 80m wspr frequency still in use 
+
+less  ~/wsprd/wlogs/wwquick-back.log 
+echo
+
+# end of program
+
+

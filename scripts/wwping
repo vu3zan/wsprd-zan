@@ -1,0 +1,17 @@
+#!/bin/bash
+# Bash file 'wwping' to check on network and
+# internet connectivity, with 5 pings each
+echo
+echo "Checking Connectivity : Network as well as Internet"
+echo "over a 5 second period each"
+echo
+echo "Network"
+echo
+sudo ping -c 5 0
+echo
+echo "Internet"
+echo
+sudo ping -c 5 www.google.com
+echo
+
+# end of program

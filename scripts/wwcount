@@ -1,0 +1,75 @@
+#!/bin/bash
+#
+# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+
+genfile=$1
+fullfile=""
+logfile="$HOME/wsprd/wlogs/wsprd.log"
+
+if 
+	[ -z $genfile ] # file name is not given, variable is empty
+then
+	fullfile="$logfile" # default file is current wsprd.log
+else
+	case $genfile in
+		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
+			genfile2="$genfile"".log"
+			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+		valid)
+			genfile2="ww""$genfile""list.log"
+			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		*)
+			echo
+			echo "Sorry! No such file exists/permitted"
+			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo
+			exit;;
+	esac
+
+fi
+
+echo " * File under analysis : ""$fullfile"
+
+ echo Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wsfn-count.log
+ echo to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wsfn-count.log  >> ~/wsprd/wlogs/wsfn-count.log
+ echo to analyze with less as default without giving any file name.  >> ~/wsprd/wlogs/wsfn-count.log
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backup/ by giving 'b1' to'b8'  >> ~/wsprd/wlogs/wsfn-count.log
+ echo for 8 days backup logs.  >> ~/wsprd/wlogs/wsfn-count.log
+ echo Used thus "wwcount bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. >> ~/wsprd/wlogs/wsfn-count.log
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid' >> ~/wsprd/wlogs/wsfn-count.log
+ echo >> ~/wsprd/wlogs/wsfn-count.log
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wsfn-count.log
+ echo >> ~/wsprd/wlogs/wsfn-count.log
+
+
+ echo "Counting for 6m" >> ~/wsprd/wlogs/wsfn-count.log
+ grep '50\.2' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  '50\.2' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+
+ echo "Counting for 10m" >> ~/wsprd/wlogs/wsfn-count.log
+ grep '28\.1' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  '28\.1' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+
+ echo "Counting for 15m" >> ~/wsprd/wlogs/wsfn-count.log
+ grep '21\.0' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  '21\.0' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+
+ echo "Counting for 20m" >> ~/wsprd/wlogs/wsfn-count.log
+ grep '14\.0' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  '14\.0' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+
+ echo "Counting for 40m" >> ~/wsprd/wlogs/wsfn-count.log
+ grep ' 7\.0' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  ' 7\.0' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+
+ echo "Counting for 80m" >> ~/wsprd/wlogs/wsfn-count.log
+ echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick-back.log
+ grep ' 3\.5' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
+ grep  ' 3\.5' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ # allowing for old 80m wspr frequency still in use 
+
+ # cat ~/wsprd/wlogs/wsfn-count.log
+ less  ~/wsprd/wlogs/wsfn-count.log 
+ echo
+
+# end of file

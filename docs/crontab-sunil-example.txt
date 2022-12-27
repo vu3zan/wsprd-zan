@@ -1,0 +1,45 @@
+# Set of chrontabs for WSPRD band change
+# CARE : THESE FILES NO LONGER EXIST, EXAMPLE ONLY
+# 00 7,16 * * * ~/20m
+# 00 13,17 * * * ~/30m
+# 00 21,2 * * * ~/40m
+# 00 23 * * * ~/80m
+
+# modified set of half hourly wsprd band changes throughout 24 hours
+# with backup at 0900 hrs and the corresponding band at 0903 hrs
+# CARE : CHECK HOME DIRECTORY IN E.G. 10m4 FILES
+#   00 1,4,7,10,13,16,19,22 * * * ~/wsprd/10m4
+#   30 1,4,7,10,13,16,19,22 * * * ~/wsprd/15m4
+#   00 2,5,8,11,14,17,20,23 * * * ~/wsprd/20m4
+#   30 2,5,8,11,14,17,20,23 * * * ~/wsprd/40m4
+#   00 3,6,12,15,18,21,00   * * * ~/wsprd/80m4
+#   00     9                * * * ~/bin/wwbackup
+#   03     9                * * * ~/wsprd/80m4
+#   30 3,6,9,12,15,18,21,00 * * * ~/wsprd/6m4
+
+# modified set of ROTATING half hourly wsprd band changes throughout 24 hours
+# with backup at 0900 hrs and the corresponding band at 0903 hrs
+# NOTE: FILES ARE RENAMED ON ROTATING BASIS BY wwrotate
+   00 1,4,7,10,13,16,19,22 * * * ~/wsprd/1m5
+   30 1,4,7,10,13,16,19,22 * * * ~/wsprd/2m5
+   00 2,5,8,11,14,17,20,23 * * * ~/wsprd/3m5
+   30 2,5,8,11,14,17,20,23 * * * ~/wsprd/4m5
+   00 3,6,12,15,18,21,00   * * * ~/wsprd/5m5
+   00     9                * * * ~/bin/wwbackup
+   03     9                * * * ~/bin/wwrotate
+   05     9                * * * ~/wsprd/5m5
+   30 3,6,9,12,15,18,21,00 * * * ~/wsprd/6m5
+
+
+# modified set of hourly wsprd band change for ONLY FOUR BANDS
+# CARE : CHECK HOME DIRECTORY IN E.G. 10m4 FILES
+# 00 7,11,15,19 * * * ~/10m4
+# 00 8,12,16,20 * * * ~/15m3
+# 00 9,13,17,21 * * * ~/20m3
+# 00 10,14,18,22 * * * ~/40m3
+
+# QUICK CHECK WSPR 2 BAND
+# CARE : CHECK HOME DIRECTORY IN E.G. 10m4 FILES
+#  00,30 * * * * ~/15m4
+#  15,45 * * * * ~/40m4
+
