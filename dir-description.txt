@@ -1,5 +1,0 @@
-# This folder /home/sunil/wsprd is the Git repo on RPZW Num 1 for user vu3zan (sunil), email vu3zan@gmail.com
-# It is used for running the rtlsdr_wsprd daemon by Guenael on Github
-# and contains scripts using the daemon for various amateur radio bands
-# as well as utility scripts written by me for using the daemon and gererating reports
-# Sunil Aruldas, VU3ZAN
