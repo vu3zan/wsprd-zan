@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
@@ -31,6 +31,10 @@ this_band="15"
         echo "$prev_item" >> ~/wsprd/wlogs/wsprd.log 
     done < "$prevfile"
 
+ # NOTE: The running rtlsdr_wsprd session for previous band needs to be killed before a new session can be created 
+ # for the current band. Since this causes it to dump all records of previous band to the wsprd.log file, the activation time 
+ # and name of previous band need to be written to the file first, which has been taken care of above.
+ 
 # recording description of current ## band and the specific script being used for it. 
 # This can be checked through the ~/bin/wwband script
     curr_band="Running reception on ""$this_band"" meters"  
@@ -40,10 +44,6 @@ this_band="15"
     
 # recording time of current band activation for use when the next band is activated
     echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
-
- # NOTE: The running rtlsdr_wsprd session for previous band needs to be killed before a new session can be created 
- # for the current band. Since this causes it to dump all records to the wsprd.log file, the activation time 
- # and name of previous band need to be written to the file first, which has been taken care of above.
 
     echo $'\n'"---Kill earlier WSPR rtlsdr_wsprd session---" >> ~/wsprd/wlogs/wsprd.log
     

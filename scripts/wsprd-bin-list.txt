@@ -6,31 +6,25 @@
  3. wwband - USEFUL --- shows present band of WSPR operation & script file in use
 
  4. wwspot --- lists all today's spots, so far
- --- as above, for backups b1 to b8 [use "wwquick-old b1"]
- 5. ws2c --- lists today's Valid spots only, so far ## discard
+ --- as above, for backups b1 to b8 [use "wwspot bn"]
  6. wsfreq --- lists all frequencies used today, so far ## fine tune
- 7. ws2fn --- groups all today's Valid spots bandwise, so far, viewed in less ## discard
  8. wwcount - USEFUL --- provides bandwise grouping & count of all today's spots, so far
- --- as above, for backups b1 to b8 [use "wwquick-old b1"]
- 9. wwtime --- lists the times of program activation today, so far
+ --- as above, for backups b1 to b8 [use "wwcount bn"]
+ 9. wwtime --- lists the times of rtlsdr_wsprd activation today, so far
 10. wwvu --- lists VU spots received today, so far
- --- as above, for backups b1 to b8 [use "wwquick-old b1"]
+ --- as above, for backups b1 to b8 [use "wwvu bn"]
 
 11. wwlog --- shows the present wsprd.log file, viewed in less, 'f/b/q' for forward/back/quit
- --- as above, for backups b1 to b8 [use "wwquick-old b1"]
+ --- as above, for backups b1 to b8 [use "wwlog bn"]
 
-12. wwtrack -- as above, but showing data as it arrives TODO
-
-13. wwvalid --- shows *Cumulative* list of valid spots, viewed in less
-14. wwinvalid --- shows *Cumulative* list of invalid spots, viewed in less
+12. wwtrack -- as above, for current log file only, but showing data as it arrives
 
 15. wwquick --- gives bandwise count of spots in wsprd.log file, viewed in less
- --- as above, for backups b1 to b8 [use "wwquick-old b1"]
-17. wwquick-valid --- as for wwquick, for cumulative valid spot file
+ --- as above, for backups b1 to b8 [use "wwquick bn"]
 
 18. wsprd-bin-list.txt --- this help file (for reference only)
 
-19. ww-timesync - CARE --- to be used in case RPi system time is wrong
+19. ww-timesync - CARE --- to be used only in case the RPi system time is wrong
 20. ww-backup - CARE --- used by day end backup --- CARE, DO NOT RUN
 21. ww-rotate - CARE --- for rotating names band hopping --- CARE, DO NOT RUN
 22. ww-kill-rtlsdr - CARE --- kills the rtlsdr_ wsprd daemon --- CARE, DO NOT RUN

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
-# bash file 'wwlive' for Guenael rtlsdr_wsprd in ~/rtlsdr-wsprd/
+# Last mod 2022-12-24 by VU3ZAN Sunil Aruldas
+# bash file 'wwlive' for Guenael rtlsdr_wsprd running in ~/rtlsdr-wsprd/
 # to show process service output for file
 
 # ps -C  rtlsdr_wsprd
@@ -33,3 +33,5 @@ echo "  [In this case if more than one number under PID is seen, no problem, bec
 echo
 echo "  Please ignore the TTY column in both cases."
 echo
+
+# end of program

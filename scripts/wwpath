@@ -1,18 +1,20 @@
 #!/bin/bash
 # 
-# last mod on 24-12-2022 by VU3ZAN Sunil Aruldas
-# Bash file 'wwpath' to show the existing Path
-# If you want to add $Home/wsprd/scripts to the Path, use the script wwaccess
+# last mod on 2022-12-24 by VU3ZAN Sunil Aruldas
+# Bash file 'wwpath' to show the existing System Path
+# If you want to add $Home/wsprd/scripts to the System Path, use the companion script wwaccess
 echo
 echo "This is the present PATH used by the system:"
 echo
 echo $PATH
 echo
 echo "    If '$HOME/wsprd/scripts' is NOT seen in the above line, then" 
-echo "    the wsprd utility scripts cannot be run easily"
+echo "    the wsprd utility scripts cannot be run easily or conveniently,"
 echo "    except from the $HOME/wsprd/scripts directory itself."
 echo
 echo "      So, for convenience of operation,  please run the script 'wwaccess' "
 echo "      in the $HOME directory as follows --- '. wwaccess' "
 echo "      This will automatically include '$HOME/wsprd/scripts' in the system PATH"
 echo
+
+# end of program

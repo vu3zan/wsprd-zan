@@ -1,8 +1,32 @@
 #!/bin/bash
-# bash file 'wwbackup' for Guenael wsprd log ~/wsprd/wlogs/wsprd.log 
+#
+# Last mod 2022-12-30 by VU3ZAN Sunil Aruldas
+# bash file 'ww-backup' for Guenael wsprd log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backup/b1.log to 8), 
-# triggered by crontab at 9am every day
+# triggered by crontab at 9.55am every day
 # and also add the valid & invalid WSPR entries to cumulative logs wwvalidlist.log & wwinvalidlist.log
+
+# recovering description of previous band
+    echo $'\n'"----------------------------------------------" >> ~/wsprd/wlogs/wsprd.log 
+    prevfile="$HOME/wsprd/wlogs/wsprband.txt"
+    # In the above line the tilde ~ is replaced by $HOME for use in the variable
+    while read -r prev_item
+    do
+        # writing description of previous band to wsprd.log
+        echo "$prev_item" >> ~/wsprd/wlogs/wsprd.log 
+    done < "$prevfile"
+    
+# recovering time of activation of previous band
+    prevfile="$HOME/wsprd/wlogs/wsprbandtime.txt"
+    while read -r prev_item
+    do
+        # writing time of activation of previous band to wsprd.log
+        echo "$prev_item" >> ~/wsprd/wlogs/wsprd.log 
+    done < "$prevfile"
+
+# NOTE: The running rtlsdr_wsprd session for previous band needs to be killed before backup.
+ # Since this causes it to dump all records of previous band to the wsprd.log file, the activation time 
+ # and name of previous band need to be written to the file first, which has been taken care of above.
 
 # first kill any rtlsdr_wsprd daemon that may be running, to avoid possible problems
 	pgrep rtlsdr_wsprd > /dev/null 2>&1
@@ -11,6 +35,8 @@
         fi
     sleep 15
 # the above gives time for the kill process to terminate successfully
+
+# Now the records of last used band will have been dumped to the log file.
 
 # Synchronize the system time with NTP, once a day
 	sudo timedatectl set-ntp true
@@ -40,18 +66,27 @@ sleep 2
 
 # sleep 2 seconds is to make sure the renaming is over
 
+# now adds valid wspr entries found in latest backup b1.log
+# i.e. ~/wsprd/wlogs/backup/b1.log to ~/wsprd/wlogs/wwvalidlist.log
+grep 'Spot :' ~/wsprd/wlogs/backup/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
+echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
+
+# now adds invalid wspr entries found in latest backup b1.log to ~/wsprd/wlogs/wwinvalidlist.log
+# grep -E '<...>' ~/wsprd/wlogs/backup/b1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
+grep -E "<...>|<A000AA" ~/wsprd/wlogs/backup/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
+echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
+
 # now create new wsprd.log with a heading line
-echo "log file for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log 
+echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log 
 date >> ~/wsprd/wlogs/wsprd.log
 
-# now adds valid wspr entries in latest backup 
-# i.e. ~/wsprd/wlogs/backup/wwbk1.log to ~/wsprd/wlogs/wwvalidlist.log
-grep 'Spot :' ~/wsprd/wlogs/backup/wwbk1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
-echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
-# date >> ~/wsprd/wlogs/wwvalidlist.log
+# Now the existing "$HOME/wsprd/wlogs/wsprband.txt" needs to be initialized for new log opened.
+# Using same coding as for band scripts, for uniformity
+    curr_band="NEW LOG FILE NOW OPENED" 
+    echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt  
+    # curr_script=$(basename -- "$0")
+    # echo "Using script : ""$curr_script" >> ~/wsprd/wlogs/wsprband.txt 
+# recording time of current band activation for use when the next band is activated
+    echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
 
-# now adds invalid wspr entries in latest backup to ~/wsprd/wlogs/wwinvalidlist.log
-grep -E '<...>' ~/wsprd/wlogs/backup/wwbk1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
-echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
-# date >> ~/wsprd/wlogs/wwinvalidlist.log
-
+# end of program

@@ -1,11 +1,14 @@
 #!/bin/bash
+#
+# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # bash file 'wwtimesync' for Guenael wsprd log 
 
 # Synchronizing the RPi with an international timer server is necessary for correct running of WSPR.
-# This is done once a day during backup at 9am, through the script ~/bin/wwbackup .
-# However it may be becessary when starting the computer after a long period of inactivity,
+# This is done once a day during backup at 9.55am, through the script ~/wsprd/scripts/ww-backup .
+
+# However synchronization may be becessary when starting the computer after a long period of inactivity,
 # or in case the time is in doubt. 
-# Hence this script has been prepared.
+# Hence this script has been prepared for use.
 
 # first kill any rtlsdr_wsprd daemon that may be running, to avoid possible problems
 	pgrep rtlsdr_wsprd > /dev/null 2>&1
@@ -19,3 +22,5 @@
 	sudo timedatectl set-ntp true
 
 echo THE SYSTEM TIME HAS BEEN  SYNCHRONIZED WITH NTP
+
+# end of program

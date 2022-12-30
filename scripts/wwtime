@@ -1,6 +1,8 @@
 #!/bin/bash
-# bash file 'wstc' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
-# to list times of band hopping in a file ~/wsprd/wlogs/wstc.log
+#
+# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# bash file 'wwtime' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# to list times of activation of the rtlsdr_wsprd daemon
 
 echo
 grep 'IST' ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wstc.log
@@ -8,3 +10,5 @@ cat ~/wsprd/wlogs/wstc.log
 wc  ~/wsprd/wlogs/wstc.log 
 # -NO DESC- echo "(less 8 lines used for description heading)"
 echo
+
+# end of program

@@ -1,9 +1,0 @@
-#!/bin/bash
-# bash file 'wwvalid' for reading Guenael rtlsdr_wsprd continuing log in ~/wsprd/wlogs/wwvalidlist.log 
-# with valid wspr entries taken daily from latest backup file  ~/wsprd/wlogs/wwbackup1.log
-
-less  ~/wsprd/wlogs/wwvalidlist.log
-
-wc  ~/wsprd/wlogs/wwvalidlist.log
-
-

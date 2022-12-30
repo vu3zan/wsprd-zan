@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Last mod 22-12-2022 by VU3ZAN Sunil Aruldas
+# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # Bash file 'wwlog' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to read with less as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backup/ 
 # Used thus "wwlog bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
-# Also read the wwvalidlist.log & wwvalidlist.log in $HOME/wsprd/wlogs/ by 
+# Also read the wwvalidlist.log & wwinvalidlist.log in $HOME/wsprd/wlogs/ by 
 # giving 'valid' & 'invalid'. 
 
 # sudo less ~/wsprd/wlogs/wsprd.log 
