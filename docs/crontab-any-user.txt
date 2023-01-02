@@ -1,15 +1,29 @@
 # Set of chrontabs for WSPRD band change
-# adjusted for any user, and rotation files with R ending
+# adjusted for any user
+# rotation files with R ending, fixed files with F ending
 
-# modified set of ROTATING half hourly wsprd band changes throughout 24 hours
-# with backup at 0955 hrs and rotation at 0957 hrs
-# NOTE: FILES ARE RENAMED ON ROTATING BASIS BY wwrotate
-   00 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/1mR
-   30 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/2mR
-   00 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/3mR
-   30 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/4mR
-   00 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/5mR
-   30 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/6mR
-   55     9                * * * $HOME/bin/wwbackup
-   57     9                * * * $HOME/bin/wwrotate
 
+# Set of ROTATING half hourly wsprd band changes throughout 24 hours
+# with backup at 0955 hrs, band script name rotation at 0957 hrs, 
+# and new band for the day at 1000 hrs
+# NOTE: FILES ARE RENAMED ON ROTATING BASIS BY ww-rotate, withlog backed by ww-backup
+#   00 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/1mR
+#   30 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/2mR
+#   00 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/3mR
+#   30 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/4mR
+#   00 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/5mR
+#   30 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/6mR  
+#   55     10                * * * $HOME/wsprd/scripts/ww-backup
+#   57     10                * * * $HOME/wsprd/scripts/ww-rotate
+
+
+# modified set of wsprd [FIXED] band changes at 10am each week day, with 40m repeated on Sunday,
+# with backup at 0955 hrs
+   00 10 * * 1 $HOME/wsprd/80mF
+   00 10 * * 2 $HOME/wsprd/6mF
+   00 10 * * 3 $HOME/wsprd/15mF
+   00 10 * * 4 $HOME/wsprd/80mF
+   00 10 * * 5 $HOME/wsprd/6mF
+   00 10 * * 6 $HOME/wsprd/15mF
+   00 10 * * 0 $HOME/wsprd/80mF
+   55  9 * * * $HOME/wsprd/scripts/ww-backup

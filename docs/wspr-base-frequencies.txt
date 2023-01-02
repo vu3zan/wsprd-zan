@@ -1,3 +1,4 @@
+Base frequencies for WSPR operation
 1.8366
 3.5686 NEW
 3.5926 OLD

@@ -1,52 +1,27 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-02 by VU3ZAN Sunil Aruldas
 # Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
 # This script is for ## 40m, located in ~/wsprd, and ORIGINALLY NAMED 5mR
-this_band="40"
+
 # HOWEVER the SCRIPT NAMES WILL CHANGE DAILY on a ROTATION basis as 1/2/3/4/5/6m5 [this is normal !!], 
 # in order to provide a "changing time slot access" to different bands at different times of day
 # as a possibly acceptable (!) implementation of band hopping.
 # See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
 
-# The RPi system time is synchronized with NTP during daily backup at 9am
+# Variable for this script is set below and passed to script wwbandrecord
+    this_band="40"
 
-# recovering description of previous band
-    echo $'\n'"----------------------------------------------" >> ~/wsprd/wlogs/wsprd.log 
-    prevfile="$HOME/wsprd/wlogs/wsprband.txt"
-    # In the above line the tilde ~ is replaced by $HOME for use in the variable
-    while read -r prev_item
-    do
-        # writing description of previous band to wsprd.log
-        echo "$prev_item" >> ~/wsprd/wlogs/wsprd.log 
-    done < "$prevfile"
-    
-# recovering time of activation of previous band
-    prevfile="$HOME/wsprd/wlogs/wsprbandtime.txt"
-    while read -r prev_item
-    do
-        # writing time of activation of previous band to wsprd.log
-        echo "$prev_item" >> ~/wsprd/wlogs/wsprd.log 
-    done < "$prevfile"
-    
- # NOTE: The running rtlsdr_wsprd session for previous band needs to be killed before a new session can be created 
- # for the current band. Since this causes it to dump all records of previous band to the wsprd.log file, the activation time 
- # and name of previous band need to be written to the file first, which has been taken care of above.
- 
-# recording description of current ## band and the specific script being used for it. 
-# This can be checked through the ~/bin/wwband script
-    curr_band="Running reception on ""$this_band"" meters"  
-    echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt  
-    curr_script=$(basename -- "$0")
-    echo "Using script : ""$curr_script" >> ~/wsprd/wlogs/wsprband.txt 
-    
-# recording time of current band activation for use when the next band is activated
-    echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
+# Calling script wwbandrecord for recovering description and time of activation of previous band
+# as well as for recording description and time of activation of current band 
+# for use when the next band is activated later
+
+    ( . $HOME/wsprd/wwbandrecord )
+
 
     echo $'\n'"---Kill earlier WSPR rtlsdr_wsprd session---" >> ~/wsprd/wlogs/wsprd.log
-    
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Kill any existing instance of rtlsdr_wsprd
@@ -61,6 +36,10 @@ this_band="40"
 # Activation of new WSPR session [a new instance of rtlsdr_wsprd] 
 # Here please type the ## -f BAND NAME/FREQUENCY, ## -c CALLSIGN (12 chars max), ## -l grid LOCATION (6 chars max). 
 # Default gain is -g 29
+# Three paired lines are provided for use of Band name, Band frequency, or Band frequency with additional 2 zeroes
+# while also recording the specific script being used.
+# Only one pair can be put into use at one time.
+# Please comment out the two pairs which are not being used.
 
     echo "using wsprd band parameter 40m" >> ~/wsprd/wlogs/wsprband.txt
 ~/rtlsdr-wsprd/rtlsdr_wsprd -f 40m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
@@ -68,6 +47,7 @@ this_band="40"
 # ~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.0386M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
         #   echo "using wsprd band parameter 7.038600M" >> ~/wsprd/wlogs/wsprband.txt
 # ~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.038600M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+
 
 # Note: From Dec 2022 the band name can be used instead of the direct frequency e.g. 10m
 # However, if no spots are received then please try the direct frequency in Mhz, with 'M' after it
