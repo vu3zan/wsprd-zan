@@ -5,9 +5,9 @@
 # to list times of activation of the rtlsdr_wsprd daemon
 
 echo
-grep 'IST' ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wstc.log
-cat ~/wsprd/wlogs/wstc.log
-wc  ~/wsprd/wlogs/wstc.log 
+grep 'IST' ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wwtime.log
+cat ~/wsprd/wlogs/wwtime.log
+wc  ~/wsprd/wlogs/wwtime.log 
 # -NO DESC- echo "(less 8 lines used for description heading)"
 echo
 

@@ -2,7 +2,7 @@
 #
 # Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log
-# to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wsfn-count.log 
+# to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.log 
 
 
 genfile=$1
@@ -17,7 +17,7 @@ else
 	case $genfile in
 		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
 			genfile2="$genfile"".log"
-			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+			fullfile="$HOME/wsprd/wlogs/backups/""$genfile2";;
 		valid)
 			genfile2="ww""$genfile""list.log"
 			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
@@ -33,49 +33,49 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wsfn-count.log
- echo to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wsfn-count.log  >> ~/wsprd/wlogs/wsfn-count.log
- echo to analyze with less as default without giving any file name.  >> ~/wsprd/wlogs/wsfn-count.log
- echo Also analyze the backup logs in $HOME/wsprd/wlogs/backup/ by giving 'b1' to'b8'  >> ~/wsprd/wlogs/wsfn-count.log
- echo for 8 days backup logs.  >> ~/wsprd/wlogs/wsfn-count.log
- echo Used thus "wwcount bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. >> ~/wsprd/wlogs/wsfn-count.log
- echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid' >> ~/wsprd/wlogs/wsfn-count.log
- echo >> ~/wsprd/wlogs/wsfn-count.log
- echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wsfn-count.log
- echo >> ~/wsprd/wlogs/wsfn-count.log
+ echo Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwcount.log
+ echo to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.log  >> ~/wsprd/wlogs/wwcount.log
+ echo to analyze with less as default without giving any file name.  >> ~/wsprd/wlogs/wwcount.log
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ by giving 'b1' to'b8'  >> ~/wsprd/wlogs/wwcount.log
+ echo for 8 days backup logs.  >> ~/wsprd/wlogs/wwcount.log
+ echo Used thus "wwcount bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. >> ~/wsprd/wlogs/wwcount.log
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid' >> ~/wsprd/wlogs/wwcount.log
+ echo >> ~/wsprd/wlogs/wwcount.log
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwcount.log
+ echo >> ~/wsprd/wlogs/wwcount.log
 
 
- echo "Counting for 6m" >> ~/wsprd/wlogs/wsfn-count.log
- grep '50\.29' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  '50\.29' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 6m" >> ~/wsprd/wlogs/wwcount.log
+ grep '50\.29' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  '50\.29' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
 
- echo "Counting for 10m" >> ~/wsprd/wlogs/wsfn-count.log
- grep '28\.12' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  '28\.12' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 10m" >> ~/wsprd/wlogs/wwcount.log
+ grep '28\.12' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  '28\.12' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
 
- echo "Counting for 15m" >> ~/wsprd/wlogs/wsfn-count.log
- grep '21\.09' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  '21\.09' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 15m" >> ~/wsprd/wlogs/wwcount.log
+ grep '21\.09' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  '21\.09' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
 
- echo "Counting for 20m" >> ~/wsprd/wlogs/wsfn-count.log
- grep '14\.09' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  '14\.09' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 20m" >> ~/wsprd/wlogs/wwcount.log
+ grep '14\.09' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  '14\.09' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
 
- echo "Counting for 40m" >> ~/wsprd/wlogs/wsfn-count.log
- grep ' 7\.03' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  ' 7\.03' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 40m" >> ~/wsprd/wlogs/wwcount.log
+ grep ' 7\.03' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  ' 7\.03' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
 
- echo "Counting for 80m" >> ~/wsprd/wlogs/wsfn-count.log
+ echo "Counting for 80m" >> ~/wsprd/wlogs/wwcount.log
  echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick-back.log
- grep ' 3\.5' $fullfile  >> ~/wsprd/wlogs/wsfn-count.log
- grep  ' 3\.5' $fullfile  -c >> ~/wsprd/wlogs/wsfn-count.log
+ grep ' 3\.5' $fullfile  >> ~/wsprd/wlogs/wwcount.log
+ grep  ' 3\.5' $fullfile  -c >> ~/wsprd/wlogs/wwcount.log
  # allowing for old 80m wspr frequency still in use 
 # Pl Note: two decimal points are given for each frequency [except 80m]
 # because otherwise the wwspot program is giving false positives by picking up values like
 # 21.0 in some other column
 
- # cat ~/wsprd/wlogs/wsfn-count.log
- less  ~/wsprd/wlogs/wsfn-count.log 
+ # cat ~/wsprd/wlogs/wwcount.log
+ less  ~/wsprd/wlogs/wwcount.log 
  echo
 
 # end of program
