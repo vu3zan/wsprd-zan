@@ -2,7 +2,7 @@
 #
 # Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
-# to put all Spots in a file ~/wsprd/wlogs/wwspot.log
+# to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt
 # to read with the less utility as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backups/ 
 # Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 daily log files b1.log to b8.log.
@@ -32,22 +32,22 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
-echo Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwspot.log
-echo to put all Spots in a file ~/wsprd/wlogs/wwspot.log  >> ~/wsprd/wlogs/wwspot.log
-echo to read with the less utility as default, without giving any file name.  >> ~/wsprd/wlogs/wwspot.log
-echo Also read the backup logs in $HOME/wsprd/wlogs/backups/   >> ~/wsprd/wlogs/wwspot.log
-echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 log files b1.log to b8.log.  >> ~/wsprd/wlogs/wwspot.log
-echo >> ~/wsprd/wlogs/wwspot.log
-echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwspot.log
-echo "                    UTC" >> ~/wsprd/wlogs/wwspot.log
-echo  >> ~/wsprd/wlogs/wwspot.log
+echo Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwspot.rpt
+echo to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt  >> ~/wsprd/wlogs/wwspot.rpt
+echo to read with the less utility as default, without giving any file name.  >> ~/wsprd/wlogs/wwspot.rpt
+echo Also read the backup logs in $HOME/wsprd/wlogs/backups/   >> ~/wsprd/wlogs/wwspot.rpt
+echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 log files b1.log to b8.log.  >> ~/wsprd/wlogs/wwspot.rpt
+echo >> ~/wsprd/wlogs/wwspot.rpt
+echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwspot.rpt
+echo "                    UTC" >> ~/wsprd/wlogs/wwspot.rpt
+echo  >> ~/wsprd/wlogs/wwspot.rpt
 
 
-grep 'Spot :' "$fullfile" >> ~/wsprd/wlogs/wwspot.log
+grep 'Spot :' "$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
 
-less ~/wsprd/wlogs/wwspot.log
+less ~/wsprd/wlogs/wwspot.rpt
 echo
-wc  -l ~/wsprd/wlogs/wwspot.log 
+wc  -l ~/wsprd/wlogs/wwspot.rpt 
 echo "(less 9 lines used for description heading)"
 echo
 

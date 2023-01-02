@@ -3,11 +3,12 @@
 # Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # bash file 'wwtime' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to list times of activation of the rtlsdr_wsprd daemon
+# in file  ~/wsprd/wlogs/wwtime.rpt
 
 echo
-grep 'IST' ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wwtime.log
-cat ~/wsprd/wlogs/wwtime.log
-wc  ~/wsprd/wlogs/wwtime.log 
+grep 'IST' ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wwtime.rpt
+cat ~/wsprd/wlogs/wwtime.rpt
+wc  ~/wsprd/wlogs/wwtime.rpt 
 # -NO DESC- echo "(less 8 lines used for description heading)"
 echo
 

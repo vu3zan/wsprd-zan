@@ -3,8 +3,8 @@
 # Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
 # bash file 'wwhelp' for Guenael rtlsdr_wsprd utility scripts in ~/wsprd/scripts
 # to list them with a short description of each
-# by displaying the file ~/wsprd/scripts/wsprd-bin-list.txt
+# by displaying the file ~/wsprd/scripts/wsprd-script-list.txt
 
-cat ~/wsprd/scripts/wsprd-bin-list.txt
+cat ~/wsprd/scripts/wsprd-script-list.txt
 
 # end of program

@@ -1,0 +1,24 @@
+  
+      LIST OF UTILITY SCRIPTS FOR EXAMINING WSPRD OPERATION [RECEPTION ONLY]
+----------------------------------------------------------------------------------
+ 1. wwhelp  -- shows this help file
+ 2. wwlive  -- shows whether the rtlsdr_wsprd process is alive & running
+ 3. wwband  -- shows the present WSPR band operation & details of script in use
+
+ 4. wwspot  -- lists all the day's spots for current Log [so far] and 8 backups
+ 5. wwcount -- provides bandwise listing & count of all the day's spots
+                         for current Log [so far] and 8 backups
+ 6. wwquick -- gives bandwise count of spots, as above 
+ 7. wwlog   -- shows the current Log file [so far] and 8 backups
+ 8. wwtrack -- displays arriving data in the current Log file
+
+ 9. wwfreq  -- lists all frequencies used for current Log [so far] and 8 backups
+10. wwtime  -- lists all times of WSPR activation for current Log [so far]
+11. wwvu    -- lists VU spots received in current Log [so far] and 8 backups
+ 
+12. ww-timesync -- CARE -- to be used only in case the RPi system time is wrong!
+
+## Logs are for 24 hours, starting from 10.00am. Backup logs are kept for 8 days ##
+-----------------------------------------------------------------------------------
+
+

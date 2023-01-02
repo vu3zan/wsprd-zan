@@ -1,9 +1,10 @@
 #!/bin/bash
 #
 # Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
-# bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log , and 8 backup logs in ~/wsprd/wlogs/backup/
-# to remove Spots with 'A000AA' & '<...>' while putting all "VU" Spots in a file ~/wsprd/wlogs/wwvu.log
-# Used thus "wwquick bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log , and 8 backup logs in ~/wsprd/wlogs/backups/
+# to remove Spots with 'A000AA' & '<...>' while putting all "VU" Spots in a file ~/wsprd/wlogs/wwvu.rpt
+# Fresh analysis every time
+# Used thus "wwquick bn" where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
 # (Note: Only name to be given, the '.log' extension is added automatically)
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
@@ -19,7 +20,7 @@ else
 	case $genfile in
 		b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8)
 			genfile2="$genfile"".log"
-			fullfile="$HOME/wsprd/wlogs/backup/""$genfile2";;
+			fullfile="$HOME/wsprd/wlogs/backups/""$genfile2";;
 		valid)
 			genfile2="ww""$genfile""list.log"
 			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
@@ -35,28 +36,29 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo Bash file 'wwvu' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwvu.log
- echo in ~/wsprd/wlogs/backup/  >> ~/wsprd/wlogs/wwvu.log
- echo To remove Spots with "A000AA" and "<...>" >> ~/wsprd/wlogs/wwvu.log
+ echo Bash file 'wwvu' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwvu.rpt
+ echo in ~/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwvu.rpt
+ echo To remove Spots with "A000AA" and "<...>" >> ~/wsprd/wlogs/wwvu.rpt
  echo to put all Spots, and then all NON 'A000AA' Spots, counted frequency wise, >> ~/wsprd/wlogs/wwquick-valid.log
- echo while putting all 'VU' [Indian] Spots in a file ~/wsprd/wlogs/wwvu.log  >> ~/wsprd/wlogs/wwvu.log
- echo >> ~/wsprd/wlogs/wwvu.log
- echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwvu.log
- echo >> ~/wsprd/wlogs/wwvu.log
+ echo while putting all 'VU' [Indian] Spots in a file ~/wsprd/wlogs/wwvu.rpt  >> ~/wsprd/wlogs/wwvu.rpt
+ echo Fresh analysis every time >> ~/wsprd/wlogs/wwvu.rpt
+ echo >> ~/wsprd/wlogs/wwvu.rpt
+ echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwvu.rpt
+ echo >> ~/wsprd/wlogs/wwvu.rpt
  
  
 
 
-  grep 'Spot : ' ~/wsprd/wlogs/wwvalidlist.log | grep 'VU2\|VU3' | grep -v 'A000AA\|<...>' >> ~/wsprd/wlogs/wwvu.log
-    grep 'Spot : ' ~/wsprd/wlogs/wwvalidlist.log | grep 'VU2\|VU3' -c >> ~/wsprd/wlogs/wwvu.log
+  grep 'Spot : ' "$fullfile" | grep 'VU2\|VU3' | grep -v 'A000AA\|<...>' >> ~/wsprd/wlogs/wwvu.rpt
+    grep 'Spot : ' "$fullfile" | grep 'VU2\|VU3' -c >> ~/wsprd/wlogs/wwvu.rpt
 
 
- # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>"  >> ~/wsprd/wlogs/wwvu.log
- # grep 'Spot : ' "$fullfile" | grep 'VU3' | grep -v '<...>'   >> ~/wsprd/wlogs/wwvu.log
- # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>" -c   >> ~/wsprd/wlogs/wwvu.log
+ # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>"  >> ~/wsprd/wlogs/wwvu.rpt
+ # grep 'Spot : ' "$fullfile" | grep 'VU3' | grep -v '<...>'   >> ~/wsprd/wlogs/wwvu.rpt
+ # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>" -c   >> ~/wsprd/wlogs/wwvu.rpt
 
- less ~/wsprd/wlogs/wwvu.log
-  wc  -l ~/wsprd/wlogs/wwvu.log 
+ less ~/wsprd/wlogs/wwvu.rpt
+  wc  -l ~/wsprd/wlogs/wwvu.rpt 
   echo "(less 8 lines used for description heading)"
   echo
   

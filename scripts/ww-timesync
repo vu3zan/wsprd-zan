@@ -4,7 +4,7 @@
 # bash file 'wwtimesync' for Guenael wsprd log 
 
 # Synchronizing the RPi with an international timer server is necessary for correct running of WSPR.
-# This is done once a day during backup at 9.55am, through the script ~/wsprd/scripts/ww-backup .
+# This is done once a day during backups at 9.55am, through the script ~/wsprd/scripts/ww-backups .
 
 # However synchronization may be becessary when starting the computer after a long period of inactivity,
 # or in case the time is in doubt. 
