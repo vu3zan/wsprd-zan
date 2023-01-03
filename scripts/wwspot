@@ -1,13 +1,21 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
 # Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt
-# to read with the less utility as default without giving any file name.
-# Also read the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 daily log files b1.log to b8.log.
+# to view as default without giving any file name.
+# Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
+# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.
 
-genfile=$1
+# Now the beginning is modified for calling by script file wwmenu
+# genfile=$1
+echo
+echo This is Utility Script '** wwspot **' for Guenael rtlsdr_wsprd log 
+echo
+echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
+echo "Entry ?  "
+read genfile
+
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
@@ -23,7 +31,7 @@ else
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter file name 'b1' to 'b8' only"
+			echo "Please enter Blank for default, or file name 'b1' to 'b8' only"
 			echo
 			exit;;
 	esac
@@ -32,15 +40,17 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
-echo Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwspot.rpt
-echo to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt  >> ~/wsprd/wlogs/wwspot.rpt
-echo to read with the less utility as default, without giving any file name.  >> ~/wsprd/wlogs/wwspot.rpt
-echo Also read the backup logs in $HOME/wsprd/wlogs/backups/   >> ~/wsprd/wlogs/wwspot.rpt
-echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 log files b1.log to b8.log.  >> ~/wsprd/wlogs/wwspot.rpt
-echo >> ~/wsprd/wlogs/wwspot.rpt
-echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwspot.rpt
-echo "                    UTC" >> ~/wsprd/wlogs/wwspot.rpt
-echo  >> ~/wsprd/wlogs/wwspot.rpt
+ echo Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwspot.rpt
+ echo to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt  >> ~/wsprd/wlogs/wwspot.rpt
+ echo to view as default, without giving any file name.  >> ~/wsprd/wlogs/wwspot.rpt
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/   >> ~/wsprd/wlogs/wwspot.rpt
+ echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.  >> ~/wsprd/wlogs/wwspot.rpt
+ echo >> ~/wsprd/wlogs/wwspot.rpt
+ echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
+ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwspot.rpt
+ echo "                    UTC" >> ~/wsprd/wlogs/wwspot.rpt
+ echo  >> ~/wsprd/wlogs/wwspot.rpt
+echo " * Report File  : ~/wsprd/wlogs/wwspot.rpt"
 
 
 grep 'Spot :' "$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
@@ -51,4 +61,4 @@ wc  -l ~/wsprd/wlogs/wwspot.rpt
 echo "(less 9 lines used for description heading)"
 echo
 
-# end of program
+# end of file

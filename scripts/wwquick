@@ -1,13 +1,23 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
-# bash file 'wwquick' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs in ~/wsprd/wlogs/backups/
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# bash file 'wwquick' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/
 # to put all Spots, and then all NON 'A000AA'& '<...>' Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt
+# to view as default without giving any file name.
+# Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
 # Used thus "wwquick bn" where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
-# (Note: Only name to be given, the '.log' extension is added automatically)
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
-genfile=$1
+# Now the beginning is modified for calling by script file wwmenu
+# genfile=$1
+echo
+echo This is Utility Script '** wwquick **' for Guenael rtlsdr_wsprd log 
+echo
+echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
+echo "or 'valid' for using the wwvalidlist.log"
+echo "Entry ?  "
+read genfile
+
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
@@ -26,7 +36,7 @@ else
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid'"
 			echo
 			exit;;
 	esac
@@ -40,8 +50,15 @@ echo " * File under analysis : ""$fullfile"
  echo To first count ALL Spots frequency-wise, and then all VALID Spots, >> ~/wsprd/wlogs/wwquick.rpt
  echo and record the count in a file ~/wsprd/wlogs/wwquick.rpt >> ~/wsprd/wlogs/wwquick.rpt
  echo >> ~/wsprd/wlogs/wwquick.rpt
- echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwquick.rpt
+ echo To view as default without giving any file name. >> ~/wsprd/wlogs/wwquick.rpt
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwquick.rpt
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/  >> ~/wsprd/wlogs/wwquick.rpt
+
+ echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwquick.rpt
+ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwquick.rpt
  echo >> ~/wsprd/wlogs/wwquick.rpt
+echo " * Report File  : ~/wsprd/wlogs/wwquick.rpt"
+
  echo ---------------------------- >> ~/wsprd/wlogs/wwquick.rpt
  echo ALL SPOTs >> ~/wsprd/wlogs/wwquick.rpt
  echo    Counting for 6m >> ~/wsprd/wlogs/wwquick.rpt
@@ -93,6 +110,6 @@ echo " * File under analysis : ""$fullfile"
 less  ~/wsprd/wlogs/wwquick.rpt 
 echo
 
-# end of program
+# end of file
 
 

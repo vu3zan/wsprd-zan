@@ -39,7 +39,10 @@
 # Now the records of last used band will have been dumped to the log file.
 
 # Synchronize the system time with NTP, once a day
-	sudo timedatectl set-ntp true
+#	sudo timedatectl set-ntp true
+#### CARE CARE CARE -- it seems in raspbian bullseye the systemd-timesyncd is favoured over ntp
+# sudo timedateclt set-ntp true gives "Failed to set ntp. ntp not supported"
+# and anyway systemd-timesyncd is taking over it seems
 	
 # SEQUENTIAL BUCKET BACKUPS -- total 8 backups
 # First delete oldest file i.e b8.log. 
@@ -72,17 +75,22 @@ cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
 
 # now adds valid wspr entries found in latest backup b1.log
 # i.e. ~/wsprd/wlogs/backups/b1.log to ~/wsprd/wlogs/wwvalidlist.log
-grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
+grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA\|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
 
 # now adds invalid wspr entries found in latest backup b1.log to ~/wsprd/wlogs/wwinvalidlist.log
 # grep -E '<...>' ~/wsprd/wlogs/backups/b1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
-grep -E "<...>|<A000AA" ~/wsprd/wlogs/backups/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
+grep -E "<...>\|<A000AA" ~/wsprd/wlogs/backups/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
 
 # now create new wsprd.log with a heading line
-echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log 
-date >> ~/wsprd/wlogs/wsprd.log
+echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log
+echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wsprd.log 
+# date >> ~/wsprd/wlogs/wsprd.log # duplicated soon anyway
+
+# now record the time of this backup separately as a check
+echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wwlatestbackup.txt 
+date >> ~/wsprd/wlogs/wwlatestbackup.txt 
 
 # Now the existing "$HOME/wsprd/wlogs/wsprband.txt" needs to be initialized for new log opened.
 # Using same coding as for band scripts, for uniformity
@@ -93,4 +101,4 @@ date >> ~/wsprd/wlogs/wsprd.log
 # recording time of current band activation for use when the next band is activated
     echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
 
-# end of program
+# end of file

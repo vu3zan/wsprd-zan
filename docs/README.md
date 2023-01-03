@@ -1,16 +1,16 @@
 Project Name :wsprd-zan
 By Sunil VU3ZAN
-               ***WORK IN PROGRESS, NOT STABLE FOR CLONING***
-This project makes use of the rtlsdr_wsprd daemon by Guenael on Github
-to receive WSPR spots [RESPECT!] using a Raspberry Pi.
 
-The project tries to provide a kind of utility environment for the rtlsdr_wsprd daemon.
-It contributes scripts to use the wsprd daemon on various bands,
-with provision for changing bands using crontab, while generating a log ($HOME/wsprd/wlogs/wsprd.log). 
-A simple system of band rotation is implemented by simply renaming the band scripts which are referred to by crontab.
-Utility scripts are also provided in $HOME/wsprd/scripts for report generation from log, for backups, and for
-other activities.
+ WORK IN PROGRESS,NOT SUITABLE AT THIS STAGE FOR CLONING 
+ 
+This project makes use of the rtlsdr_wsprd daemon by Guenael on 
+Githubto receive WSPR spots [RESPECT!] using a Raspberry Pi. It 
+provides a kind of utility environment for the rtlsdr_wsprd daemon. The 
+crontab service runs custom band scripts, the renaming of which 
+provides a simple form of band rotation. Logs generated are backed up, 
+and also analysed by Utility scripts for report generation. I am using 
+a Raspberry Pi Zero W successfully.
 
-Version 1 used the wsprd daemon for fixed bands, using the tmux session utility.
-Version 2 introduced band changing with the help of crontab. The utility scripts were kept separately in $HOME/bin.
-Version 3 now has brought all files and folders under a single folder $HOME/wsprd, and uses git and github for version control. 
+A menu system has been implemented for the utility scripts. 
+Documentation in files is extensive. However the files TODO.md and 
+details.md indicate how far I still have to go. Feedback is welcome.

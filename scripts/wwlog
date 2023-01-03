@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
 # Bash file 'wwlog' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
-# to read with less as default without giving any file name.
+# to read as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backups/ 
 # Used thus "wwlog bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
 # Also read the wwvalidlist.log & wwinvalidlist.log in $HOME/wsprd/wlogs/ by 
@@ -10,7 +10,16 @@
 
 # sudo less ~/wsprd/wlogs/wsprd.log 
 
-genfile=$1
+# Now the beginning is modified for calling by script file wwmenu
+# genfile=$1
+echo
+echo This is Utility Script '** wwlog **' for Guenael rtlsdr_wsprd log 
+echo
+echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
+echo "or 'valid / invalid' for using the wwvalidlist.log / wwinvalidlist.log"
+echo "Entry ?  "
+read genfile
+
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
@@ -32,7 +41,7 @@ else
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter file name 'b1' to 'b8' only, or 'valid' or 'invalid'"
+			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid' or 'invalid'"
 			echo
 			exit;;
 	esac
@@ -46,4 +55,4 @@ wc -l "$fullfile"
 # -NO DESC- echo "(less 8 lines used for description heading)"
 echo
 
-# end of program
+# end of file

@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
 # bash file 'wwhelp' for Guenael rtlsdr_wsprd utility scripts in ~/wsprd/scripts
-# to list them with a short description of each
-# by displaying the file ~/wsprd/scripts/wsprd-script-list.txt
+# to list them with a short description of each, for use with wwmenu script,
+# by displaying the file ~/wsprd/scripts/wsprd-script-list-for-menu.txt
 
-cat ~/wsprd/scripts/wsprd-script-list.txt
+cat ~/wsprd/scripts/wsprd-script-list-for-menu.txt
 
 # end of program

@@ -1,11 +1,24 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
 # Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log
 # to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.rpt 
+# to view as default without giving any file name.
+# Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
+# Used thus "wwquick bn" where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
+# Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
 
-genfile=$1
+# Now the beginning is modified for calling by script file wwmenu
+# genfile=$1
+echo
+echo This is Utility Script '** wwcount **' for Guenael rtlsdr_wsprd log 
+echo
+echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
+echo "or 'valid' for using the wwvalidlist.log"
+echo "Entry ?  "
+read genfile
+
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
@@ -24,7 +37,7 @@ else
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid'"
 			echo
 			exit;;
 	esac
@@ -35,14 +48,16 @@ echo " * File under analysis : ""$fullfile"
 
  echo Bash file 'wwcount' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log   > ~/wsprd/wlogs/wwcount.rpt
  echo to put all Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.rpt  >> ~/wsprd/wlogs/wwcount.rpt
- echo to analyze with less as default without giving any file name.  >> ~/wsprd/wlogs/wwcount.rpt
- echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ by giving 'b1' to'b8'  >> ~/wsprd/wlogs/wwcount.rpt
- echo for 8 days backup logs.  >> ~/wsprd/wlogs/wwcount.rpt
+ echo to view as default without giving any file name.  >> ~/wsprd/wlogs/wwcount.rpt
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwcount.rpt
  echo Used thus "wwcount bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. >> ~/wsprd/wlogs/wwcount.rpt
- echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid' >> ~/wsprd/wlogs/wwcount.rpt
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ >> ~/wsprd/wlogs/wwcount.rpt
  echo >> ~/wsprd/wlogs/wwcount.rpt
- echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwcount.rpt
+ echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwcount.rpt
+ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwcount.rpt
  echo >> ~/wsprd/wlogs/wwcount.rpt
+echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
+
 
 
  echo "Counting for 6m" >> ~/wsprd/wlogs/wwcount.rpt
@@ -78,4 +93,4 @@ echo " * File under analysis : ""$fullfile"
  less  ~/wsprd/wlogs/wwcount.rpt 
  echo
 
-# end of program
+# end of file

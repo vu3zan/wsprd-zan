@@ -1,14 +1,26 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
-# bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log , and 8 backup logs in ~/wsprd/wlogs/backups/
-# to remove Spots with 'A000AA' & '<...>' while putting all "VU" Spots in a file ~/wsprd/wlogs/wwvu.rpt
+# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log
+# in ~/wsprd/wlogs/backups/, plus  ~/wsprd/wlogs/wwvalidlist.log
+# to remove Spots with 'A000AA' & '<...>' while putting all "VU" [Indian] Spots in a file ~/wsprd/wlogs/wwvu.rpt
 # Fresh analysis every time
-# Used thus "wwquick bn" where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
-# (Note: Only name to be given, the '.log' extension is added automatically)
+# to view as default without giving any file name.
+# Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
+# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.
+
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
-genfile=$1
+# Now the beginning is modified for calling by script file wwmenu
+# genfile=$1
+echo
+echo This is Utility Script '** wwvu **' for Guenael rtlsdr_wsprd log 
+echo
+echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
+echo "or 'valid' for using the wwvalidlist.log"
+echo "Entry ?  "
+read genfile
+
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
@@ -27,7 +39,7 @@ else
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter file name 'b1' to 'b8' only, or 'valid'"
+			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid'"
 			echo
 			exit;;
 	esac
@@ -36,32 +48,30 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo Bash file 'wwvu' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwvu.rpt
- echo in ~/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwvu.rpt
- echo To remove Spots with "A000AA" and "<...>" >> ~/wsprd/wlogs/wwvu.rpt
- echo to put all Spots, and then all NON 'A000AA' Spots, counted frequency wise, >> ~/wsprd/wlogs/wwquick-valid.log
- echo while putting all 'VU' [Indian] Spots in a file ~/wsprd/wlogs/wwvu.rpt  >> ~/wsprd/wlogs/wwvu.rpt
- echo Fresh analysis every time >> ~/wsprd/wlogs/wwvu.rpt
- echo >> ~/wsprd/wlogs/wwvu.rpt
- echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwvu.rpt
- echo >> ~/wsprd/wlogs/wwvu.rpt
- 
- 
 
+ echo Bash file 'wwvu' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwvu.rpt
+ echo in ~/wsprd/wlogs/backups/, plus  ~/wsprd/wlogs/wwvalidlist.log >> ~/wsprd/wlogs/wwvu.rpt
+ echo "to remove Spots with 'A000AA' & '<...>' while putting all "VU" [Indian]"  >> ~/wsprd/wlogs/wwvu.rpt
+ echo Spots in a file ~/wsprd/wlogs/wwvu.rpt >> ~/wsprd/wlogs/wwvu.rpt
+ echo Fresh analysis every time >> ~/wsprd/wlogs/wwvu.rpt
+ echo to view as default without giving any file name. >> ~/wsprd/wlogs/wwvu.rpt
+ echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwvu.rpt
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ >> ~/wsprd/wlogs/wwvu.rpt
+
+ echo >> ~/wsprd/wlogs/wwvu.rpt
+ echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwvu.rpt
+ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwvu.rpt
+ echo >> ~/wsprd/wlogs/wwvu.rpt
+ echo " * Report File  : ~/wsprd/wlogs/wwvu.rpt"
 
   grep 'Spot : ' "$fullfile" | grep 'VU2\|VU3' | grep -v 'A000AA\|<...>' >> ~/wsprd/wlogs/wwvu.rpt
-    grep 'Spot : ' "$fullfile" | grep 'VU2\|VU3' -c >> ~/wsprd/wlogs/wwvu.rpt
-
-
- # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>"  >> ~/wsprd/wlogs/wwvu.rpt
- # grep 'Spot : ' "$fullfile" | grep 'VU3' | grep -v '<...>'   >> ~/wsprd/wlogs/wwvu.rpt
- # grep 'Spot : ' "$fullfile" | grep "VU2|VU3" | grep -v "A000AA|<...>" -c   >> ~/wsprd/wlogs/wwvu.rpt
+  grep 'Spot : ' "$fullfile" | grep 'VU2\|VU3' | grep -v 'A000AA\|<...>' -c >> ~/wsprd/wlogs/wwvu.rpt
 
  less ~/wsprd/wlogs/wwvu.rpt
   wc  -l ~/wsprd/wlogs/wwvu.rpt 
-  echo "(less 8 lines used for description heading)"
+  echo "(less 11 lines used for description heading)"
   echo
+
   
-  
-  # end of program
+  # end of file
 

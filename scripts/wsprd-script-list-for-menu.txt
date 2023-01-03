@@ -1,0 +1,25 @@
+  
+      LIST OF UTILITY SCRIPTS FOR EXAMINING WSPRD OPERATION [RECEPTION ONLY]
+--------------------------------------------------------------------------------
+  [ please type the serial number and press the 'ENTER' key]
+           ----------------------
+  1. wwlive  -- shows whether the rtlsdr_wsprd process is alive & running
+  2. wwping  -- test the status of network & internet connection
+  3. wwband  -- shows the present WSPR band operation & details of script in use
+ 
+  4. wwspot  -- lists all the day's spots for current Log [so far] & 8 backups 
+  5. wwcount -- provides bandwise listing & count of all the day's spots
+                         for current Log [so far] & 8 backups
+  6. wwquick -- gives bandwise count of spots, as above 
+  7. wwlog   -- shows the current Log file [so far] & 8 backups
+  8. wwtrack -- displays arriving data in the current Log file (Ctrl-C to exit)
+
+  9. wwfreq  -- lists all frequencies used for current Log [so far] & 8 backups
+ 10. wwtime  -- lists all times of WSPR activation for current Log [so far]
+ 11. wwvu    -- lists VU spots received in current Log [so far] & 8 backups
+ 
+ 00. EXIT MENU
+ 
+ ## For the FILE VIEWER, f / b / q = forward / backward / quit
+ ## Logs are for 24 hours, starting at 10.00am. Backup logs are for 8 days ##
+--------------------------------------------------------------------------------
