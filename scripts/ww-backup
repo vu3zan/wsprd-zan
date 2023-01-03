@@ -66,6 +66,10 @@ sleep 2
 
 # sleep 2 seconds is to make sure the renaming is over
 
+# Now backs up ~/wsprd/wlogs/wwvalidlist.log  and ~/wsprd/wlogs/wwinvalidlist.log to backups folder
+cp ~/wsprd/wlogs/wwvalidlist.log ~/wsprd/wlogs/backups/
+cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
+
 # now adds valid wspr entries found in latest backup b1.log
 # i.e. ~/wsprd/wlogs/backups/b1.log to ~/wsprd/wlogs/wwvalidlist.log
 grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log

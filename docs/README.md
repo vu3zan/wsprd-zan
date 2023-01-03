@@ -1,6 +1,6 @@
 Project Name :wsprd-zan
 By Sunil VU3ZAN
-
+               ***WORK IN PROGRESS, NOT STABLE FOR CLONING***
 This project makes use of the rtlsdr_wsprd daemon by Guenael on Github
 to receive WSPR spots [RESPECT!] using a Raspberry Pi.
 
