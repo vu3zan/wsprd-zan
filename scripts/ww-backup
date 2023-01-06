@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2022-12-30 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # bash file 'ww-backup' for Guenael wsprd log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -27,6 +27,9 @@
 # NOTE: The running rtlsdr_wsprd session for previous band needs to be killed before backups.
  # Since this causes it to dump all records of previous band to the wsprd.log file, the activation time 
  # and name of previous band need to be written to the file first, which has been taken care of above.
+
+# TESTING ###########################
+cp ~/wsprd/wlogs/wsprd.log ~/wsprd/wlogs/backups/wsprd-test.log
 
 # first kill any rtlsdr_wsprd daemon that may be running, to avoid possible problems
 	pgrep rtlsdr_wsprd > /dev/null 2>&1
@@ -92,7 +95,7 @@ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wl
 echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wwlatestbackup.txt 
 date >> ~/wsprd/wlogs/wwlatestbackup.txt 
 
-# Now the existing "$HOME/wsprd/wlogs/wsprband.txt" needs to be initialized for new log opened.
+# Now the existing "$HOME/wsprd/wlogs/wsprband.txt & wsprbandtime.txt" need to be initialized for new log opened.
 # Using same coding as for band scripts, for uniformity
     curr_band="NEW LOG FILE NOW OPENED" 
     echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt  

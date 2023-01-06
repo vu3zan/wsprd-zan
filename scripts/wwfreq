@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # Bash file 'wwfreq' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt
 # and to view as default without giving any file name.
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/
-# Used thus "wwfreq bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# Used thus 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log
 
 # Now the beginning is modified for calling by script file wwmenu
 # genfile=$1
@@ -44,6 +44,7 @@ echo " * File under analysis : ""$fullfile"
  echo to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt  >> ~/wsprd/wlogs/wwfreq.rpt
  echo and to view as default without giving any file name.  >> ~/wsprd/wlogs/wwfreq.rpt
  echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ >> ~/wsprd/wlogs/wwfreq.rpt
+ echo Used thus 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log >> ~/wsprd/wlogs/wwfreq.rpt
  echo >> ~/wsprd/wlogs/wwfreq.rpt
  echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwfreq.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwfreq.rpt

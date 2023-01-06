@@ -1,13 +1,17 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # Bash file 'wwtrack' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
-# to read with less as default without giving any file name.
-# NOTE : This MONITORS the log file, displaying data as it is written to file 
-# ALSO NOTE: This will hang after the daily backup is carried out, when existing wsprd.log file is replaced b new  one
+# to read as default without giving any file name.
+# NOTE : This MONITORS the current log file, displaying data as and when it is written to file 
+# ALSO NOTE: This will HANG after the daily backup is carried out, when existing wsprd.log file is replaced b new  one
+# Exit this script by Ctrl-C both normally and when hanging
+
 echo 
 less +F ~/wsprd/wlogs/wsprd.log
 echo " * File under analysis : ~/wsprd/wlogs/wsprd.log" 
+echo Can also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
+echo Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log
 wc -l ~/wsprd/wlogs/wsprd.log
 # -NO DESC- echo "(less 8 lines used for description heading)"
 echo

@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # bash file 'wwvu' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log
 # in ~/wsprd/wlogs/backups/, plus  ~/wsprd/wlogs/wwvalidlist.log
 # to remove Spots with 'A000AA' & '<...>' while putting all "VU" [Indian] Spots in a file ~/wsprd/wlogs/wwvu.rpt
 # Fresh analysis every time
 # to view as default without giving any file name.
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.
+# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log
 
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
@@ -56,6 +56,7 @@ echo " * File under analysis : ""$fullfile"
  echo Fresh analysis every time >> ~/wsprd/wlogs/wwvu.rpt
  echo to view as default without giving any file name. >> ~/wsprd/wlogs/wwvu.rpt
  echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwvu.rpt
+ echo Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log >> ~/wsprd/wlogs/wwvu.rpt
  echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ >> ~/wsprd/wlogs/wwvu.rpt
 
  echo >> ~/wsprd/wlogs/wwvu.rpt
@@ -69,7 +70,7 @@ echo " * File under analysis : ""$fullfile"
 
  less ~/wsprd/wlogs/wwvu.rpt
   wc  -l ~/wsprd/wlogs/wwvu.rpt 
-  echo "(less 11 lines used for description heading)"
+  echo "(less 12 lines used for description heading)"
   echo
 
   

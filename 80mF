@@ -7,7 +7,7 @@
 
 # This script is for ## 80m, located in ~/wsprd, and named  80m
 # Variable for this is set below and passed to script wwbandrecord
-    this_band="6"
+    this_band="80"
 
 # Calling script wwbandrecord for recovering description and time of activation of previous band
 # as well as for recording description and time of activation of current band 

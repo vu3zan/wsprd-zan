@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # Bash file 'wwspot' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt
 # to view as default without giving any file name.
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.
+# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log
 
 # Now the beginning is modified for calling by script file wwmenu
 # genfile=$1
@@ -44,7 +44,7 @@ echo " * File under analysis : ""$fullfile"
  echo to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt  >> ~/wsprd/wlogs/wwspot.rpt
  echo to view as default, without giving any file name.  >> ~/wsprd/wlogs/wwspot.rpt
  echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/   >> ~/wsprd/wlogs/wwspot.rpt
- echo Used thus :  'wwquick bn' --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log.  >> ~/wsprd/wlogs/wwspot.rpt
+ echo Used thus :  'wwspot bn' --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log  >> ~/wsprd/wlogs/wwspot.rpt
  echo >> ~/wsprd/wlogs/wwspot.rpt
  echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwspot.rpt
@@ -58,7 +58,7 @@ grep 'Spot :' "$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
 less ~/wsprd/wlogs/wwspot.rpt
 echo
 wc  -l ~/wsprd/wlogs/wwspot.rpt 
-echo "(less 9 lines used for description heading)"
+echo "(less 10 lines used for description heading)"
 echo
 
 # end of file

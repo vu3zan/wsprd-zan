@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Last mod 2023-01-03 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
 # bash file 'wwquick' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/
-# to put all Spots, and then all NON 'A000AA'& '<...>' Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt
+# to count ALL Spots frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt
 # to view as default without giving any file name.
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus "wwquick bn" where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
+# Used thus : 'wwquick bn' where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
 
 # Now the beginning is modified for calling by script file wwmenu
@@ -47,12 +47,13 @@ echo " * File under analysis : ""$fullfile"
 
  echo Bash file wwquick for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/, and 8 backup logs > ~/wsprd/wlogs/wwquick.rpt
  echo in ~/wsprd/wlogs/backups/ >> ~/wsprd/wlogs/wwquick.rpt
- echo To first count ALL Spots frequency-wise, and then all VALID Spots, >> ~/wsprd/wlogs/wwquick.rpt
+ echo To count ALL Spots frequency-wise >> ~/wsprd/wlogs/wwquick.rpt
  echo and record the count in a file ~/wsprd/wlogs/wwquick.rpt >> ~/wsprd/wlogs/wwquick.rpt
  echo >> ~/wsprd/wlogs/wwquick.rpt
  echo To view as default without giving any file name. >> ~/wsprd/wlogs/wwquick.rpt
  echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/  >> ~/wsprd/wlogs/wwquick.rpt
- echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/  >> ~/wsprd/wlogs/wwquick.rpt
+ echo Used thus : 'wwquick bn' where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
+ echo Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid' >> ~/wsprd/wlogs/wwquick.rpt
 
  echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwquick.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwquick.rpt
@@ -76,36 +77,14 @@ echo " * Report File  : ~/wsprd/wlogs/wwquick.rpt"
  echo    Counting for 40m >> ~/wsprd/wlogs/wwquick.rpt
  grep  ' 7\.03' "$fullfile"  -c >> ~/wsprd/wlogs/wwquick.rpt
 
- echo    Counting for 80m >> ~/wsprd/wlogs/wwquick.rpt
- echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 3\.5' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
+ echo "Counting for both new/old 80m whichever is selected" >> ~/wsprd/wlogs/wwquick.rpt
+ grep  ' 3\.56' $fullfile  -c >> ~/wsprd/wlogs/wwquick.rpt
+ grep  ' 3\.59' $fullfile  -c >> ~/wsprd/wlogs/wwquick.rpt
  # allowing for old 80m wspr frequency still in use 
- # Pl Note: two decimal points are given for each frequency [except 80m]
-# because otherwise the wwspot program is giving false positives by picking up values like
+ 
+# Pl Note: two decimal points are given for each frequency
+# because otherwise the wwcount program is giving false positives by picking up values like
 # 21.0 in some other column
-
- echo ---------------------------- >> ~/wsprd/wlogs/wwquick.rpt
- echo
- echo VALID SPOTs ONLY - WITHOUT 'A000AA' and '<...>' cases >> ~/wsprd/wlogs/wwquick.rpt
- echo    Counting for 6m >> ~/wsprd/wlogs/wwquick.rpt
- grep  '50\.29' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick.rpt
-
- echo    Counting for 10m >> ~/wsprd/wlogs/wwquick.rpt
- grep  '28\.12' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick.rpt
-
- echo    Counting for 15m >> ~/wsprd/wlogs/wwquick.rpt
- grep  '21\.09' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick.rpt
-
- echo    Counting for 20m >> ~/wsprd/wlogs/wwquick.rpt
- grep  '14\.09' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick.rpt
-
- echo    Counting for 40m >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 7\.03' "$fullfile" | grep -v -E "A000AA|<...>"  -c >> ~/wsprd/wlogs/wwquick.rpt
-
- echo    Counting for 80m >> ~/wsprd/wlogs/wwquick.rpt
- echo    for both new and old 80m wspr frequency >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 3\.5' "$fullfile" | grep -v -E "A000AA|<...>" -c >> ~/wsprd/wlogs/wwquick.rpt
- # allowing for old 80m wspr frequency still in use 
 
 less  ~/wsprd/wlogs/wwquick.rpt 
 echo
