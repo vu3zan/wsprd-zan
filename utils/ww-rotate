@@ -1,12 +1,12 @@
 #!/bin/bash
 #
-# Last mod 2022-12-22 by VU3ZAN Sunil Aruldas
-# bash file 'wwrotate' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
+# bash file 'ww-rotate' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to rotate 6 band files by renaming them as 1 to 6 in rotation, triggered by crontab at 9.55am every day
-# if the rotation feature has been activated
+# when the rotation feature has been activated through crontab
 # 
 mv ~/wsprd/6mR  ~/wsprd/0mR
-# this file 0m5 is a temporary placeholder file, to be renamed as 1m5 at the end 
+# this file 0mR is a temporary placeholder file, to be renamed as 1mR at the end 
 sleep 2
 mv ~/wsprd/5mR  ~/wsprd/6mR
 sleep 2
@@ -22,6 +22,9 @@ mv ~/wsprd/0mR  ~/wsprd/1mR
 sleep 2
 
 # the earlier file 1mR has become 2mR, earlier file 2mR has become 3mR and so on 
+# Since the band selection is hard coded inside the band scripts, this means that 
+# the crontab schedule will effectively cause a different sequence of bands to be activated
+# thus enabling rotation of bands
 # The sleep 2 seconds command is to make sure the renaming is over
 
-# end of program
+# end of file

@@ -1,20 +1,20 @@
 #!/bin/bash
 #
 # Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# Bash file 'wwfreq' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
+# Bash file 'wwfreq' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
+# and to use it as default without giving any file name.
 # to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt
-# and to view as default without giving any file name.
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/
-# Used thus 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log
+# Used thus : 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log
 
 # Now the beginning is modified for calling by script file wwmenu
 # genfile=$1
 echo
-echo This is Utility Script '** wwfreq **' for Guenael rtlsdr_wsprd log 
+echo "This is Utility Script '** wwfreq **' for Guenael rtlsdr_wsprd log" 
 echo
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
-echo "Entry ?  "
-read genfile
+echo
+read -p  "Entry ?  "  genfile
 
 fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
@@ -40,11 +40,11 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo Bash file 'wwfreq' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log > ~/wsprd/wlogs/wwfreq.rpt
- echo to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt  >> ~/wsprd/wlogs/wwfreq.rpt
- echo and to view as default without giving any file name.  >> ~/wsprd/wlogs/wwfreq.rpt
- echo Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ >> ~/wsprd/wlogs/wwfreq.rpt
- echo Used thus 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log >> ~/wsprd/wlogs/wwfreq.rpt
+ echo "Bash file 'wwfreq' for Guenael rtlsdr_wsprd current log " > ~/wsprd/wlogs/wwfreq.rpt
+ echo "and to use it as default without giving any file name."  >> ~/wsprd/wlogs/wwfreq.rpt
+ echo "to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt"  >> ~/wsprd/wlogs/wwfreq.rpt
+ echo "Also analyze the backup logs " >> ~/wsprd/wlogs/wwfreq.rpt
+ echo "Used thus : 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log" >> ~/wsprd/wlogs/wwfreq.rpt
  echo >> ~/wsprd/wlogs/wwfreq.rpt
  echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwfreq.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwfreq.rpt
@@ -56,7 +56,7 @@ grep 'Dial freq.' "$fullfile" >> ~/wsprd/wlogs/wwfreq.rpt
 # cat ~/wsprd/wlogs/wwfreq.rpt
 less  ~/wsprd/wlogs/wwfreq.rpt
 wc  -l  ~/wsprd/wlogs/wwfreq.rpt 
-echo "(less 7 lines used for description heading)"
+echo "(less 9 lines used for description heading)"
 echo
 
 # end of file
