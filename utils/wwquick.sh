@@ -61,31 +61,53 @@ echo " * Report File  : ~/wsprd/wlogs/wwquick.rpt"
 
  echo "----------------------------" >> ~/wsprd/wlogs/wwquick.rpt
  echo "ALL SPOTs" >> ~/wsprd/wlogs/wwquick.rpt
- echo    "Counting for 6m ">> ~/wsprd/wlogs/wwquick.rpt
- grep  '50\.29' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
+  # used 7.04 instead of 7.03 because that is what is seen
+
+ echo    "Counting for  6m ">> ~/wsprd/wlogs/wwquick.rpt
+ cnt1=$(  grep  ' 50\.29' "$fullfile" -c  )
+ cnt2=$(  grep  ' 50\.30' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2))
+ echo "   6m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 10m ">> ~/wsprd/wlogs/wwquick.rpt
- grep  '28\.12' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
+ cnt1=$(  grep  ' 28\.12' "$fullfile" -c  )
+ cnt2=$(  grep  ' 28\.13' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2))
+ echo "  10m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 15m" >> ~/wsprd/wlogs/wwquick.rpt
- grep  '21\.09' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
+ cnt1=$(  grep  ' 21\.09' "$fullfile" -c  )
+ cnt2=$(  grep  ' 21\.10' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2))
+ echo " 15m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 20m" >> ~/wsprd/wlogs/wwquick.rpt
- grep  '14\.09' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
+ cnt1=$(  grep  ' 14\.09' "$fullfile" -c  )
+ cnt2=$(  grep  ' 14\.10' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2))
+ echo " 20m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 40m" >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 7\.04' "$fullfile"  -c >> ~/wsprd/wlogs/wwquick.rpt
- # used 7.04 instead of 7.03 because that is what is seen
+ cnt1=$(  grep  ' 7\.03' "$fullfile" -c  )
+ cnt2=$(  grep  ' 7\.04' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2))
+ echo " 40m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo "Counting for 80m [both new/old whichever has been selected]" >> ~/wsprd/wlogs/wwquick.rpt
  grep  ' 3\.57' "$fullfile"  -c >> ~/wsprd/wlogs/wwquick.rpt
  grep  ' 3\.59' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
  # used 3.57 instead of 3.56 because that is what is seen
  # allowing for old 80m wspr frequency still in use 
+ cnt1=$(  grep  ' 3\.57' "$fullfile" -c  )
+ cnt2=$(  grep  ' 3\.58' "$fullfile" -c  )
+ cnt3=$(  grep  ' 3\.59' "$fullfile" -c  )
+ cnt4=$(  grep  ' 3\.60' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4))
+ echo " 80m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
  
-# Pl Note: two decimal points are given for each frequency
+# Pl Note: a space & two decimal points are given for each frequency
 # because otherwise the wwcount program is giving false positives by picking up values like
-# 21.0 in some other column of log file spot record
+# 21.0 in some other column of log file spot record such as SNR or DT
 
 less  ~/wsprd/wlogs/wwquick.rpt 
 echo

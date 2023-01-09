@@ -65,6 +65,7 @@ do
   then
 	uppcall=$(echo $gencall | tr '[:lower:]' '[:upper:]')
 	# call sign in gencall is converted to capitals in upcall and used later as uppcall
+	uppcall=" "$uppcall  # adding a space in front to ensure that only start of call sign picked up
 
   else
 		echo
