@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# bash file 'ww-backup' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
+# bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
 # and also add the valid & invalid WSPR pots found the latest log file (here b1.log after backups)
@@ -100,9 +100,7 @@ date >> ~/wsprd/wlogs/wwlatestbackup.txt
 # Now the existing "$HOME/wsprd/wlogs/wsprband.txt & wsprbandtime.txt" need to be initialized for new log opened.
 # Using same coding as for band scripts, for uniformity
     curr_band="NEW LOG FILE NOW OPENED" 
-    echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt  
-    # curr_script=$(basename -- "$0")
-    # echo "Using script : ""$curr_script" >> ~/wsprd/wlogs/wsprband.txt 
+    echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt
 # recording time of current band activation for use when the next band is activated
     echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
 

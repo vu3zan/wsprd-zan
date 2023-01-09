@@ -1,19 +1,19 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# Bash file 'wwlog' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Bash file 'wwlog.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to view it as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus "wwlog bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
+# Used thus "bash wwlog.sh bn" where n is 1 to 8 for each of 8 log files b1.log to b8.log. 
 # Also read the wwvalidlist.log & wwinvalidlist.log in $HOME/wsprd/wlogs/ by 
 # giving 'valid' & 'invalid'. 
 
 # sudo less ~/wsprd/wlogs/wsprd.log 
 
-# Now the beginning is modified for calling by script file wwmenu
+# Now the beginning is modified for calling by script file wwmenu.sh
 # genfile=$1
 echo
-echo "This is Utility Script '** wwlog **' for Guenael rtlsdr_wsprd log" 
+echo "This is Utility Script '** wwlog.sh **' for Guenael rtlsdr_wsprd log" 
 echo
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo "or 'valid / invalid' for using the wwvalidlist.log / wwinvalidlist.log"
@@ -49,8 +49,9 @@ else
 fi
 
 echo " * File under analysis : ""$fullfile"
+echo "Able to view the current log file as default without giving any file name."
 echo "Can also analyze the backup logs in $HOME/wsprd/wlogs/backups/" 
-echo "Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log"
+echo "Used thus : 'bash wwlog.sh bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log"
 echo "Can also read the wwvalidlist.log & wwinvalidlist.log in $HOME/wsprd/wlogs/ by "
 echo "giving 'valid' & 'invalid'."
 echo "For the FILE VIEWER, f / b / q = forward / backward / quit" 

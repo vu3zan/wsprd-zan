@@ -1,19 +1,19 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# bash file 'ww-timesync-CARE' for Guenael wsprd log 
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# bash file 'ww---timesync-CARE.sh' for Guenael wsprd log 
 
 # Synchronizing the RPi with an international timer server is necessary for correct running of WSPR.
-# This is done once a day during backups at 9.55am, through the script ~/wsprd/utils/ww-backups .
+# This is done once a day during backups at 9.55am, through the script ~/wsprd/utils/ww-backup.sh 
 
-# However synchronization may be becessary when starting the computer after a long period of inactivity,
+# However synchronization may be necessary when starting the computer after a long period of inactivity,
 # or in case the time is in doubt. 
 # Hence this script has been prepared for use.
 
 #### CARE CARE CARE -- it seems in raspbian bullseye the systemd-timesyncd is favoured over ntp
 # sudo timedateclt set-ntp true gives "Failed to set ntp. ntp not supported"
 # and anyway systemd-timesyncd is taking over it seems
-# Hence this time synchronization has been disabled in the ~/wsprd/utils/ww-backup file 
+# Hence this time synchronization has been disabled in the ~/wsprd/utils/ww-backup.sh file 
 
 echo Synchronizing the RPi with an international timer server is necessary for correct running of WSPR.
 echo This is done once a day during backups at 9.55am, through the script ~/wsprd/scripts/ww-backups .

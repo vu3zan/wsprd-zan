@@ -1,19 +1,20 @@
 #!/bin/bash
 #
-# Last mod 2023-01-02 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-09, by VU3ZAN Sunil Aruldas
 # Arrangement for WSPR reception in a utility environment for
 # using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
-# This script is for ## 20m, located in ~/wsprd, and named 20m
-# Variable for this is set below and passed to script wwbandrecord
-    this_band="20"
+# This script is for ## 6m, located in ~/wsprd, and named  6mF.sh
+# Variables for this band and script name are set below and passed to script wwbandrecord
+    this_band="6"
+    this_script=$(basename -- "$0")
 
 # Calling script wwbandrecord for recovering description and time of activation of previous band
 # as well as for recording description and time of activation of current band 
 # for use when the next band is activated later
 
-    ( . $HOME/wsprd/wwbandrecord )
+    ( bash $HOME/wsprd/wwbandrecord.sh )
 
 
     echo $'\n'"---Kill earlier WSPR rtlsdr_wsprd session---" >> ~/wsprd/wlogs/wsprd.log
@@ -36,12 +37,12 @@
 # Only one pair can be put into use at one time.
 # Please comment out the two pairs which are not being used.
 
-    echo "using wsprd band parameter 20m" >> ~/wsprd/wlogs/wsprband.txt
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 20m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-    #   echo "using wsprd band parameter 14.0956M" >> ~/wsprd/wlogs/wsprband.txt
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.0956M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-        #   echo "using wsprd band parameter 14.095600M" >> ~/wsprd/wlogs/wsprband.txt
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.095600M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    echo "using wsprd band parameter 6m" >> ~/wsprd/wlogs/wsprband.txt
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 6m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    #   echo "using wsprd band parameter 50.2930M" >> ~/wsprd/wlogs/wsprband.txt
+# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 50.2930M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+        #   echo "using wsprd band parameter 50.293000M" >> ~/wsprd/wlogs/wsprband.txt
+# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 50.293000M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
 
 # Note: From Dec 2022 the band name can be used instead of the direct frequency e.g. 10m
 # However, if no spots are received then please try the direct frequency in Mhz, with 'M' after it

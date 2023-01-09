@@ -1,16 +1,16 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# Bash file 'wwfreq' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Bash file 'wwfreq.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # and to use it as default without giving any file name.
 # to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/
-# Used thus : 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log
+# Used thus : 'bash wwfreq.sh bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log
 
-# Now the beginning is modified for calling by script file wwmenu
+# Now the beginning is modified for calling by script file wwmenu.sh
 # genfile=$1
 echo
-echo "This is Utility Script '** wwfreq **' for Guenael rtlsdr_wsprd log" 
+echo "This is Utility Script '** wwfreq.sh **' for Guenael rtlsdr_wsprd log" 
 echo
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo
@@ -40,11 +40,11 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo "Bash file 'wwfreq' for Guenael rtlsdr_wsprd current log " > ~/wsprd/wlogs/wwfreq.rpt
+ echo "Bash file 'wwfreq.sh' for Guenael rtlsdr_wsprd current log " > ~/wsprd/wlogs/wwfreq.rpt
  echo "and to use it as default without giving any file name."  >> ~/wsprd/wlogs/wwfreq.rpt
  echo "to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt"  >> ~/wsprd/wlogs/wwfreq.rpt
  echo "Also analyze the backup logs " >> ~/wsprd/wlogs/wwfreq.rpt
- echo "Used thus : 'wwfreq bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log" >> ~/wsprd/wlogs/wwfreq.rpt
+ echo "Used thus : 'bash wwfreq.sh bn' where n is 1 to 8 for each of 8 log files b1.log to b8.log" >> ~/wsprd/wlogs/wwfreq.rpt
  echo >> ~/wsprd/wlogs/wwfreq.rpt
  echo " * File under analysis : ""$fullfile">> ~/wsprd/wlogs/wwfreq.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwfreq.rpt

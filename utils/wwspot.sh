@@ -1,16 +1,16 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# Bash file 'wwspot' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Bash file 'wwspot.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to use it as default without giving any file name.
 # to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
-# Used thus : 'wwspot bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log
+# Used thus : 'bash wwspot.sh bn'  --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log
 
 # Now the beginning is modified for calling by script file wwmenu
 # genfile=$1
 echo
-echo "This is Utility Script '** wwspot **' for Guenael rtlsdr_wsprd log" 
+echo "This is Utility Script '** wwspot.sh **' for Guenael rtlsdr_wsprd log" 
 echo
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo 
@@ -40,11 +40,11 @@ fi
 
 echo " * File under analysis : ""$fullfile"
 
- echo "Bash file 'wwspot' for Guenael rtlsdr_wsprd current log in " > ~/wsprd/wlogs/wwspot.rpt
+ echo "Bash file 'wwspot.sh' for Guenael rtlsdr_wsprd current log in " > ~/wsprd/wlogs/wwspot.rpt
  echo "to use it as default, without giving any file name."  >> ~/wsprd/wlogs/wwspot.rpt
  echo "to put all Spots in a file ~/wsprd/wlogs/wwspot.rpt"  >> ~/wsprd/wlogs/wwspot.rpt
  echo "Also analyze the backup logs "  >> ~/wsprd/wlogs/wwspot.rpt
- echo "Used thus :  'wwspot bn' --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log " >> ~/wsprd/wlogs/wwspot.rpt
+ echo "Used thus :  'bash wwspot.sh bn' --- where n is 1 to 8 for each of 8 backup log files b1.log to b8.log " >> ~/wsprd/wlogs/wwspot.rpt
  echo >> ~/wsprd/wlogs/wwspot.rpt
  echo " * File under analysis : ""$fullfile" >> ~/wsprd/wlogs/wwspot.rpt
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwspot.rpt

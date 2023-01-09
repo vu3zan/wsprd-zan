@@ -1,19 +1,25 @@
 #!/bin/bash
 #
-# Last mod 2023-01-02 by VU3ZAN Sunil Aruldas
-# Arrangement for WSPR reception in a utility environment for
-# using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
-# This script is for ## 10m, located in ~/wsprd, and named 10m
-# Variable for this is set below and passed to script wwbandrecord
-    this_band="10"
+# This script is for ## 15m, located in ~/wsprd, and ORIGINALLY NAMED 3mR.sh
+
+# HOWEVER the SCRIPT NAMES WILL CHANGE DAILY on a ROTATION basis as 1/2/3/4/5/6m5 [this is normal !!], 
+# in order to provide a "changing time slot access" to different bands at different times of day
+# as a possibly acceptable (!) implementation of band hopping.
+# See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
+
+# Variables for this band and script name are set below and passed to script wwbandrecord
+    this_band="15"
+    this_script=$(basename -- "$0")
 
 # Calling script wwbandrecord for recovering description and time of activation of previous band
 # as well as for recording description and time of activation of current band 
 # for use when the next band is activated later
 
-    ( . $HOME/wsprd/wwbandrecord )
+    ( bash $HOME/wsprd/wwbandrecord.sh )
 
 
     echo $'\n'"---Kill earlier WSPR rtlsdr_wsprd session---" >> ~/wsprd/wlogs/wsprd.log
@@ -32,16 +38,17 @@
 # Here please type the ## -f BAND NAME/FREQUENCY, ## -c CALLSIGN (12 chars max), ## -l grid LOCATION (6 chars max). 
 # Default gain is -g 29
 # Three paired lines are provided for use of Band name, Band frequency, or Band frequency with additional 2 zeroes
-# while recording the specific script being used.
+# while also recording the specific script being used.
 # Only one pair can be put into use at one time.
 # Please comment out the two pairs which are not being used.
 
-    echo "using wsprd band parameter 10m" >> ~/wsprd/wlogs/wsprband.txt
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 10m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-    #   echo "using wsprd band parameter 28.1246M" >> ~/wsprd/wlogs/wsprband.txt
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 28.1246M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-        #   echo "using wsprd band parameter28.124600M" >> ~/wsprd/wlogs/wsprband.txt
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 28.124600M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    echo "using wsprd band parameter 15m" >> ~/wsprd/wlogs/wsprband.txt
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 15m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    #   echo "using wsprd band parameter 21.0946M" >> ~/wsprd/wlogs/wsprband.txt
+# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 21.0946M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    #   echo "using wsprd band parameter 821.094600M" >> ~/wsprd/wlogs/wsprband.txt
+# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 21.094600M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+
 
 # Note: From Dec 2022 the band name can be used instead of the direct frequency e.g. 10m
 # However, if no spots are received then please try the direct frequency in Mhz, with 'M' after it
@@ -53,5 +60,5 @@
 # This WSPR session will normally continue until it is killed preparatory to the next session for next band.
 
 
-# END of file
+# END of program
  

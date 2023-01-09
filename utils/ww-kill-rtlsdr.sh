@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
-# bash file 'ww-kill-rtlsdr' for Guenael rtlsdr_wsprd running in ~/rtlsdr-wsprd/
+# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# bash file 'ww-kill-rtlsdr.sdr' for Guenael rtlsdr_wsprd running in ~/rtlsdr-wsprd/
 # to STOP the running of the rtlsdr_wsprd process(es)
 
 sudo killall rtlsdr_wsprd
