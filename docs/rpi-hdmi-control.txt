@@ -1,4 +1,4 @@
-Turning HDMI ON & OFF for WSPRD
+ Turning HDMI ON & OFF for WSPRD
 
 Turning off may reduce interference and will reduce power requirements
 

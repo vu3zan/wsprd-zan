@@ -8,21 +8,22 @@
 
   [ please Type the Serial Number and press the 'ENTER' key]
            ----------------------
-  1. wwlive  -- shows whether the WSPR program is running
-  2. wwping  -- tests the status of network & internet connection
+  1. wwlive  -- checks whether the WSPR program is running
+  2. wwping  -- checks status of network & internet connection
   3. wwband  -- shows current WSPR band, band script & band parameter in use
  
   4. wwspot  -- lists all the day's Spots, for LOG SET
   5. wwquick -- gives a QUICK bandwise count of total Spots, for LOG SET 
-  6. wwcount -- provides detailed bandwise listing & count of 
+  6. wwcount -- gives a detailed bandwise listing & count of 
                                  both total and valid Spots, for LOG SET 
   7. wwlog   -- displays the complete Log file, for LOG SET
-  8. wwtrack -- displays the Current Log, adding data (as it comes in) to the
-                       bottom of the log file -- (Ctrl-C, q to exit)
+  8. wwtrack -- monitors the Current Log, adding data (as it comes in)
+                       to the bottom of the log file -- (Ctrl-C, q to exit)
   9. wwfreq  -- lists all Frequencies used, for LOG SET
  10. wwtime  -- lists all Times of WSPR program activation for current Log
- 11. wwcallsign -- lists Spots received from a  given callsign, for LOG SET
- 
+ 11. wwcallsign -- searches for Spots from a given callsign, for LOG SET
+ 12. ww-newuser -- changes Existing User to New User 
+				(callsign & grid location)
  00. EXIT THIS MENU
 
 --------------------------------------------------------------------------------

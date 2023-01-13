@@ -55,7 +55,9 @@ do
 				# bash $HOME/wsprd/utils/wwvu.sh;;
 				bash $HOME/wsprd/utils/wwcallsign.sh;;
 				
-			# 12)
+			12)
+				bash $HOME/wsprd/utils/ww-newuser.sh
+			# 13)
 				# bash $HOME/wsprd/utils/ww---timesync-CARE.sh;;
 			# disabled because ntp is having problems in raspbian bullseye
 			# and anyway systemd-timesyncd is taking over it seems

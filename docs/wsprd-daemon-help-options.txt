@@ -1,4 +1,4 @@
-rtlsdr_wsprd, a simple WSPR daemon for RTL receivers
+ rtlsdr_wsprd, a simple WSPR daemon for RTL receivers
 
 Use:	rtlsdr_wsprd -f frequency -c callsign -l locator [options]
 	-f dial frequency [(,k,M) Hz] or band string

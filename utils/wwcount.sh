@@ -114,7 +114,7 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  # allowing for old 80m wspr frequency still in use 
  
 # Pl Note: a space & two decimal points are given for each frequency
-# because otherwise the wwcount program is giving false positives by picking up values like
+# because otherwise the wwcountsh program is giving false positives by picking up values like
 # 21.0 in some other column of log file spot record such as SNR or DT
 
  echo "----------------------------" >> ~/wsprd/wlogs/wwcount.rpt
@@ -123,7 +123,7 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
 
  echo "Count & Listing for 6m" >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 50\.29' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 50\.30' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt++
+ grep ' 50\.30' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  cnt1=$(  grep  ' 50\.29' "$fullfile" | grep -v -E "A000AA\|<...>"  -c  )
  cnt2=$(  grep  ' 50\.30' "$fullfile" | grep -v -E "A000AA\|<...>"  -c  )
  totcnt=$(($cnt1 + $cnt2))
@@ -137,7 +137,7 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  totcnt=$(($cnt1 + $cnt2))
  echo "  10m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
 
- echo "Count & Listing for 15m" >> ~/wsprd/wlogs/count.rpt
+ echo "Count & Listing for 15m" >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 21\.09' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 21\.10' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  cnt1=$(  grep  ' 21\.09' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )

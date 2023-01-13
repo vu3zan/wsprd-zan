@@ -1,4 +1,4 @@
-# Set of chrontabs for WSPRD band change
+ # Set of chrontabs for WSPRD band change
 # adjusted for any user
 # rotation files with R ending, fixed files with F ending
 

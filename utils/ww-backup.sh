@@ -1,11 +1,14 @@
 #!/bin/bash
 #
-# Last mod 2023-01-06 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-13 by VU3ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
-# and also add the valid & invalid WSPR pots found the latest log file (here b1.log after backups)
+# and also add the valid & invalid WSPR spots found the latest log file (here b1.log after backups)
 # to cumulative logs wwvalidlist.log & wwinvalidlist.log
+# Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wwuser.txt
+# Create a record of latest backup in ~/wsprd/wlogs/wwlatestbackup.txt
+# Initialize the wsprd.log and wwband.txt files
 
 # recovering description of previous band
     echo $'\n'"----------------------------------------------" >> ~/wsprd/wlogs/wsprd.log 
@@ -48,7 +51,7 @@ cp ~/wsprd/wlogs/wsprd.log ~/wsprd/wlogs/backups/wsprd-test.log
 # sudo timedateclt set-ntp true gives "Failed to set ntp. ntp not supported"
 # and anyway systemd-timesyncd is taking over it seems
 # Hence this time synchronization has been disabled
-	
+
 # SEQUENTIAL BUCKET BACKUPS -- total 8 backups
 # First delete oldest file i.e b8.log. 
 # Next rename 2nd oldest as oldest i.e b7.log as b8.log, and so on.
@@ -78,6 +81,11 @@ sleep 2
 cp ~/wsprd/wlogs/wwvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
 
+# Now backs up the old ~/wsprd/wlogs/wwuser.txt to backups folder
+cp ~/wsprd/wlogs/wwuser.txt ~/wsprd/wlogs/backups/
+# Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
+cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
+
 # now adds valid wspr entries found in latest backup b1.log
 # (i.e. ~/wsprd/wlogs/backups/b1.log) to ~/wsprd/wlogs/wwvalidlist.log
 grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA\|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
@@ -93,7 +101,7 @@ echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log
 echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wsprd.log 
 # date >> ~/wsprd/wlogs/wsprd.log # duplicated soon anyway
 
-# now record the time of this backup separately as a check for administrator
+# now record the time of this backup separately as a check for the ** administrator **
 echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wwlatestbackup.txt 
 date >> ~/wsprd/wlogs/wwlatestbackup.txt 
 

@@ -13,5 +13,10 @@ Base frequencies for WSPR operation
 28.1246
 50.2930
 
-# WSPR freq 1.8366, 3.5686 NEW, 3.5926 OLD, 5.2872, 5.3647, 7.0386
-# 10.1387, 14.0956, 18.1046, 21.0946, 24.9246, 28.1246, 50.293
+
+# Note: From Dec 2022 the band name can be used instead of the direct frequency e.g. 10m
+# However, if no spots are received then please try the direct frequency in Mhz, with 'M' after it
+# WSPR freq 1.8366M, 3.5686M NEW, 3.5926M OLD, 5.2872M, 5.3647M, 7.0386M
+# 10.1387M, 14.0956M, 18.1046M, 21.0946M, 24.9246M, 28.1246M, 50.2930M
+# However, I had earlier found it necessary to add two more zeroes "00" after the frequency parameter 
+# e.g. "28.124600M", instead of "28.1246M", so please try this also if needed 
