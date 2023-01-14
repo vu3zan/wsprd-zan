@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-14 by VU3ZAN Sunil Aruldas
 # bash file 'ww---timesync-CARE.sh' for Guenael wsprd log 
 
 # Synchronizing the RPi with an international timer server is necessary for correct running of WSPR.
@@ -46,5 +46,7 @@ echo
 echo
 echo IF NO FAILURE MESSAGE IS SEEN ON SCREEN, 
 echo 		THEN THE SYSTEM TIME HAS BEEN  SYNCHRONIZED WITH NTP
+# syslog entry for last few NTP activations saved to 
+grep NTP /var/log/syslog 
 
 # end of file

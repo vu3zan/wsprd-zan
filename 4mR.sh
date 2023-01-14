@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-10 by --VU3ZAN Sunil Aruldas
+# Last mod 2023-01-14 by --VU3ZAN Sunil Aruldas
 # Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
@@ -14,12 +14,21 @@
 # Variables for this band name, script name and band parameter are set below and passed to script wwbandrecord.sh
     this_band="80"
     this_script=$(basename -- "$0")
+# Setting band parameter as 1, 2 or 3   
+    bandparam=1
+    if [ "$bandparam" -eq 1 ]; then    this_parameter="80m" 
+    elif [ "$bandparam" -eq 2 ]; then    this_parameter="3.5686M" 
+    else    this_parameter="3.568600M" 
+    fi
+# PL NOTE: 'variable bandparam' is also used below to select the appropriate one of three script lines provided
 
 # Calling script wwbandrecord.sh for recovering description and time of activation of previous band
 # as well as for recording description and time of activation of current band 
 # for use when the next band is activated later
+# CARE -- use '.' (DOT) command instead of 'bash' below, to enable passing of above variables !!
 
-    ( bash $HOME/wsprd/wwbandrecord.sh )
+    ( . $HOME/wsprd/wwbandrecord.sh )
+
 
 
     echo $'\n'"---Kill earlier WSPR rtlsdr_wsprd session---" >> ~/wsprd/wlogs/wsprd.log
@@ -37,18 +46,20 @@
 # Activation of new WSPR session [a new instance of rtlsdr_wsprd] 
 # Here please type the ## -f BAND NAME/FREQUENCY, ## -c CALLSIGN (12 chars max), ## -l grid LOCATION (6 chars max). 
 # Default gain is -g 29
-# Three paired lines are provided for use of Band name, Band frequency, or Band frequency with additional 2 zeroes
-# while also recording the specific script being used.
-# Only one pair can be put into use at one time.
-# Please comment out the two pairs which are not being used.
+# [ PL NOTE: Three readymade script lines are provided using different parameters :
+# either Band name, Band frequency, or Band frequency with additional 2 zeroes.
+# Which one is selected depends on the value of the variable 'bandparam' which is set to 1, 2 or 3 at the top of this script.
+# The description of the parameter is also passed there to the wwbandrecord.sh script]
 
-        this_parameter="80m" 
- ~/rtlsdr-wsprd/rtlsdr_wsprd -f 80m -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-    # this_parameter="3.56868M"
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 3.5686M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-    # this_parameter="3.568600M"
-# ~/rtlsdr-wsprd/rtlsdr_wsprd -f 3.568600M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
-
+# Using bandparam variable (1, 2 or 3)  as set above  
+    if [ "$bandparam" -eq 1 ]; then 
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 80m -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    elif [ "$bandparam" -eq 2 ]; then 
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 3.5686M -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    else  
+ ~/rtlsdr-wsprd/rtlsdr_wsprd -f 3.568600M -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+    fi
+    
 # OLD WSPR frequency for 80m band is below
     # this_parameter="OLD 3.5926M" 
 # ~/rtlsdr-wsprd/rtlsdr_wsprd -f 3.5926M -c VU3ZAN -l MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &

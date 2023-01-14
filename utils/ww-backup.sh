@@ -1,14 +1,15 @@
 #!/bin/bash
 #
-# Last mod 2023-01-13 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-14 by VU3ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
-# and also add the valid & invalid WSPR spots found the latest log file (here b1.log after backups)
-# to cumulative logs wwvalidlist.log & wwinvalidlist.log
-# Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wwuser.txt
 # Create a record of latest backup in ~/wsprd/wlogs/wwlatestbackup.txt
-# Initialize the wsprd.log and wwband.txt files
+# and run ntp timw synchronization# Create a record of latest backup in wwlatestbackup.txt
+# and also add the valid & invalid WSPR spots found in the latest log file (here b1.log after backups)
+# to cumulative logs wwvalidlist.log & wwinvalidlist.log
+# Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wwuser.txt, wwlatestbackup.txt
+# Initialize the wsprd.log, wsprband.txt and wsprbandtime.txt files
 
 # recovering description of previous band
     echo $'\n'"----------------------------------------------" >> ~/wsprd/wlogs/wsprd.log 
@@ -45,12 +46,21 @@ cp ~/wsprd/wlogs/wsprd.log ~/wsprd/wlogs/backups/wsprd-test.log
 
 # Now the records of last used band will have been dumped to the log file.
 
+# now record the time of this backup separately as a check for the ** administrator **
+echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wwlatestbackup.txt 
+date >> ~/wsprd/wlogs/wwlatestbackup.txt 
+
 # Synchronize the system time with NTP, once a day
-#	sudo timedatectl set-ntp true
+	sudo timedatectl set-ntp true
+    
+grep NTP /var/log/syslog > ~/wsprd/wlogs/temp.txt && \
+tail ~/wsprd/wlogs/temp.txt >> ~/wsprd/wlogs/wwlatestbackup.txt && \
+rm ~/wsprd/wlogs/temp.txt && cat ~/wsprd/wlogs/wwlatestbackup.txt 
+
 #### CARE CARE CARE -- it seems in raspbian bullseye the systemd-timesyncd is favoured over ntp
-# sudo timedateclt set-ntp true gives "Failed to set ntp. ntp not supported"
+# sudo timedateclt set-ntp true sometimes gives "Failed to set ntp. ntp not supported"
 # and anyway systemd-timesyncd is taking over it seems
-# Hence this time synchronization has been disabled
+# maybe this time synchronization should be disabled
 
 # SEQUENTIAL BUCKET BACKUPS -- total 8 backups
 # First delete oldest file i.e b8.log. 
@@ -80,7 +90,6 @@ sleep 2
 # Now backs up the old ~/wsprd/wlogs/wwvalidlist.log  and ~/wsprd/wlogs/wwinvalidlist.log to backups folder
 cp ~/wsprd/wlogs/wwvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
-
 # Now backs up the old ~/wsprd/wlogs/wwuser.txt to backups folder
 cp ~/wsprd/wlogs/wwuser.txt ~/wsprd/wlogs/backups/
 # Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
@@ -100,10 +109,6 @@ echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalid
 echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log
 echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wsprd.log 
 # date >> ~/wsprd/wlogs/wsprd.log # duplicated soon anyway
-
-# now record the time of this backup separately as a check for the ** administrator **
-echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wwlatestbackup.txt 
-date >> ~/wsprd/wlogs/wwlatestbackup.txt 
 
 # Now the existing "$HOME/wsprd/wlogs/wsprband.txt & wsprbandtime.txt" need to be initialized for new log opened.
 # Using same coding as for band scripts, for uniformity
