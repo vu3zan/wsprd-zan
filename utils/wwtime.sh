@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-14 by VU3ZAN Sunil Aruldas
 # Bash file 'wwtime.sh' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # and to use it as default without giving any file name.
 # to list times of activation of the rtlsdr_wsprd daemon in file  ~/wsprd/wlogs/wwtime.rpt
@@ -53,7 +53,9 @@ echo " * File under analysis : ""$fullfile"
 echo " * Report File  : ~/wsprd/wlogs/wwtime.rpt"
 
 echo
-grep 'IST' ~/wsprd/wlogs/wsprd.log >> ~/wsprd/wlogs/wwtime.rpt
+# grep 'IST' ~/wsprd/wlogs/wsprd.log >> ~/wsprd/wlogs/wwtime.rpt
+grep 'Starting rtlsdr' ~/wsprd/wlogs/wsprd.log >> ~/wsprd/wlogs/wwtime.rpt
+
  less  ~/wsprd/wlogs/wwtime.rpt
  wc -l ~/wsprd/wlogs/wwtime.rpt 
 echo "(less 9 lines used for description heading)"

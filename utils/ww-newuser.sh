@@ -1,12 +1,12 @@
 #!/bin/bash
 #
-# Last mod 2023-01-12 by --VU3ZAN Sunil Aruldas
+# Last mod 2023-01-15 by --VU3ZAN Sunil Aruldas
 # bash file 'ww-newuser.sh' for Guenael rtlsdr_wsprd
 # This will first show existing callsign and grid location (of existing user)
-# already written to ~/wsprd/wlogs/wwuser.txt
+# already written to ~/wsprd/wlogs/wspruser.txt
 # It will then ask for new callsign and new grid location
 # It will then act on all the band script files and the 
-# bandrecord file in ~/wsprd.\,
+# bandrecord file in ~/wsprd,
 # changing the existing callsign to the given new callsign, and
 # the default grid location to the given new grid location
 
@@ -23,7 +23,7 @@ echo "It will then act on all the band script related files,"
 echo "changing the default callsign to the given new callsign, and"
 echo "the default grid location to the given new grid location"
 echo 
-# checking the details of existing user in ~/wsprd/wlogs/wwuser.txt
+# checking the details of existing user in ~/wsprd/wlogs/wspruser.tx
 existcall=""; existgrid=""
 #  while IFS= read -r read_in; do
   while read -r read_in; do
@@ -31,8 +31,8 @@ existcall=""; existgrid=""
         if [ -z "$existcall" ]; then
                 existcall="$existgrid"
         fi
-  done < ~/wsprd/wlogs/wwuser.txt
-# done < ~/wsprd/wlogs/wwuser.txt
+  done < ~/wsprd/wlogs/wspruser.tx
+# done < ~/wsprd/wlogs/wspruser.tx
  # for testing with wsprd/wlogs
 echo
 echo "Existing user callsign : ""$existcall"
@@ -114,11 +114,11 @@ echo "User Grid Location has been changed from  ""$existgrid""  to  ""$newgrid" 
 echo "$(date)" >> ~/wsprd/wlogs/wsprd.log
 # echo >> ~/wsprd/wlogs/wsprd.log
 
-# updating user data to  ~/wsprd/wlogs/wwuser.txt
- echo "$newcall" > ~/wsprd/wlogs/wwuser.txt
- echo "$newgrid" >> ~/wsprd/wlogs/wwuser.txt
- echo "New User CallSign & Grid Location has been written to wwuser.txt"
- echo "New User CallSign & Grid Location has been written to wwuser.txt" >> ~/wsprd/wlogs/wsprd.log
+# updating user data to  ~/wsprd/wlogs/wspruser.tx
+ echo "$newcall" > ~/wsprd/wlogs/wspruser.tx
+ echo "$newgrid" >> ~/wsprd/wlogs/wspruser.tx
+ echo "New User CallSign & Grid Location has been written to wspruser.tx"
+ echo "New User CallSign & Grid Location has been written to wspruser.tx" >> ~/wsprd/wlogs/wsprd.log
 echo "------------------------ " >> ~/wsprd/wlogs/wsprd.log
 echo
   # end of file

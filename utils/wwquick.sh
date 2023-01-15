@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-15 by VU3ZAN Sunil Aruldas
 # bash file 'wwquick.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/
 # to use it as default without giving any file name.
-# to count ALL Spots frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt
+# to simply count ALL Spots frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt
 # Also analyze the backup logs in $HOME/wsprd/wlogs/backups/ 
 # Used thus : 'bash wwquick.sh bn' where n is 1 to 8 for each of 8 backup log files b1.log to b8.log. 
 # Also analyze the wwvalidlist.log in $HOME/wsprd/wlogs/ by giving 'valid'
@@ -47,7 +47,7 @@ echo " * File under analysis : ""$fullfile"
 
  echo "Bash file 'wwquick.sh' for Guenael rtlsdr_wsprd current log " > ~/wsprd/wlogs/wwquick.rpt
  echo "To use it as default without giving any file name." >> ~/wsprd/wlogs/wwquick.rpt
- echo "To count ALL Spots frequency-wise" >> ~/wsprd/wlogs/wwquick.rpt
+ echo "To simply count ALL Spots frequency-wise" >> ~/wsprd/wlogs/wwquick.rpt
  echo "and record the count in a file ~/wsprd/wlogs/wwquick.rpt" >> ~/wsprd/wlogs/wwquick.rpt
  echo >> ~/wsprd/wlogs/wwquick.rpt
  echo "Also analyze the backup logs" >> ~/wsprd/wlogs/wwquick.rpt
@@ -67,13 +67,13 @@ echo " * Report File  : ~/wsprd/wlogs/wwquick.rpt"
  cnt1=$(  grep  ' 50\.29' "$fullfile" -c  )
  cnt2=$(  grep  ' 50\.30' "$fullfile" -c  )
  totcnt=$(($cnt1 + $cnt2))
- echo "   6m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
+ echo "  6m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 10m ">> ~/wsprd/wlogs/wwquick.rpt
  cnt1=$(  grep  ' 28\.12' "$fullfile" -c  )
  cnt2=$(  grep  ' 28\.13' "$fullfile" -c  )
  totcnt=$(($cnt1 + $cnt2))
- echo "  10m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
+ echo " 10m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
  echo    "Counting for 15m" >> ~/wsprd/wlogs/wwquick.rpt
  cnt1=$(  grep  ' 21\.09' "$fullfile" -c  )
@@ -93,21 +93,20 @@ echo " * Report File  : ~/wsprd/wlogs/wwquick.rpt"
  totcnt=$(($cnt1 + $cnt2))
  echo " 40m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
 
- echo "Counting for 80m [both new/old whichever has been selected]" >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 3\.57' "$fullfile"  -c >> ~/wsprd/wlogs/wwquick.rpt
- grep  ' 3\.59' "$fullfile" -c >> ~/wsprd/wlogs/wwquick.rpt
- # used 3.57 instead of 3.56 because that is what is seen
- # allowing for old 80m wspr frequency still in use 
- cnt1=$(  grep  ' 3\.57' "$fullfile" -c  )
- cnt2=$(  grep  ' 3\.58' "$fullfile" -c  )
- cnt3=$(  grep  ' 3\.59' "$fullfile" -c  )
- cnt4=$(  grep  ' 3\.60' "$fullfile" -c  )
- totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4))
+ echo "Counting for 80m [both new/old, whichever has been selected in the band script]" >> ~/wsprd/wlogs/wwquick.rpt
+ # Spots have been seen at 3.57 instead of 3.56, so a range is used to cover possibles,
+ # Also allowing for old 80m wspr frequency 3.5926 still in use 
+ cnt1=$(  grep  ' 3\.56' "$fullfile" -c  )
+ cnt2=$(  grep  ' 3\.57' "$fullfile" -c  )
+ cnt3=$(  grep  ' 3\.58' "$fullfile" -c  )
+ cnt4=$(  grep  ' 3\.59' "$fullfile" -c  )
+ cnt5=$(  grep  ' 3\.60' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4 + $cnt5))
  echo " 80m count : ""$totcnt" >> ~/wsprd/wlogs/wwquick.rpt
  
-# Pl Note: a space & two decimal points are given for each frequency
-# because otherwise the wwcount program is giving false positives by picking up values like
-# 21.0 in some other column of log file spot record such as SNR or DT
+# Pl Note: A space before, as well as two decimal points, are given for each frequency
+# because otherwise the program is giving false positives by picking up values like
+# -21.0 in some other column of log file spot record such as SNR or DT
 
 less  ~/wsprd/wlogs/wwquick.rpt 
 echo

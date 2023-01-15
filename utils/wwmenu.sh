@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-14 by VU3ZAN Sunil Aruldas
 # Bash file 'wwmenu.sh' for running utility scripts for utility environment for
 # Guenael rtlsdr_wsprd 
 # This file is located in $HOME and calls $HOME/wsprd/utils/wwhelp.sh to display the menu
@@ -52,11 +52,9 @@ do
 			10)
 				bash $HOME/wsprd/utils/wwtime.sh;;
 			11)
-				# bash $HOME/wsprd/utils/wwvu.sh;;
 				bash $HOME/wsprd/utils/wwcallsign.sh;;
-				
 			12)
-				bash $HOME/wsprd/utils/ww-newuser.sh
+				bash $HOME/wsprd/utils/ww-newuser.sh;;
 			# 13)
 				# bash $HOME/wsprd/utils/ww---timesync-CARE.sh;;
 			# disabled because ntp is having problems in raspbian bullseye
@@ -74,8 +72,7 @@ do
 				echo "You have entered "
 				echo "* ""$gmenu"" *"
 				echo "Sorry! This entry is not accepted"
-				# echo Please enter Menu numbers 1 to 12, or '00' only
-				echo "Please enter Menu numbers 1 to 11, or '00' only"
+				echo Please enter Menu numbers 1 to 12, or '00' only
 				echo;;
 		esac
 	

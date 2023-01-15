@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-15 by VU3ZAN Sunil Aruldas
 # Bash file 'wwcount.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log
 # to use as default without giving any file name.
 # to put all Spots, and then all NON 'A000AA'& '<...>' Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.rpt 
@@ -76,7 +76,7 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  totcnt=$(($cnt1 + $cnt2))
  echo "  10m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
 
- echo "Count & Listing for 15m" >> ~/wsprd/wlogs/count.rpt
+ echo "Count & Listing for 15m" >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 21\.09' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 21\.10' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  cnt1=$(  grep  ' 21\.09' "$fullfile" -c  )
@@ -100,26 +100,28 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  totcnt=$(($cnt1 + $cnt2))
  echo " 40m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
 
- echo "Count & Listing for 80m [both new/old whichever has been selected]" >> ~/wsprd/wlogs/wwcount.rpt
+ echo "Count & Listing for 80m [both new/old, whichever has been selected in the band script]" >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.56' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.57' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.58' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.59' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.60' $fullfile  >> ~/wsprd/wlogs/wwcount.rpt
  cnt1=$(  grep  ' 3\.57' "$fullfile" -c  )
- cnt2=$(  grep  ' 3\.58' "$fullfile" -c  )
- cnt3=$(  grep  ' 3\.59' "$fullfile" -c  )
- cnt4=$(  grep  ' 3\.60' "$fullfile" -c  )
- totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4))
+ cnt2=$(  grep  ' 3\.57' "$fullfile" -c  )
+ cnt3=$(  grep  ' 3\.58' "$fullfile" -c  )
+ cnt4=$(  grep  ' 3\.59' "$fullfile" -c  )
+ cnt5=$(  grep  ' 3\.60' "$fullfile" -c  )
+ totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4 +$cnt5))
  echo " 80m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
- # allowing for old 80m wspr frequency still in use 
+ # allowing for old 80m wspr frequency 3.5926 still in use 
  
-# Pl Note: a space & two decimal points are given for each frequency
-# because otherwise the wwcountsh program is giving false positives by picking up values like
-# 21.0 in some other column of log file spot record such as SNR or DT
+# Pl Note: A space before, as well as two decimal points, are given for each frequency
+# because otherwise the program is giving false positives by picking up values like
+# -21.0 in some other column of log file spot record such as SNR or DT
 
  echo "----------------------------" >> ~/wsprd/wlogs/wwcount.rpt
  echo >> ~/wsprd/wlogs/wwcount.rpt
- echo "VALID SPOTs ONLY - WITHOUT 'A000AA' and '<...>' cases ">> ~/wsprd/wlogs/wwcount.rpt
+ echo "VALID SPOTs ONLY - WITHOUT 'A000AA' and '<...>' cases (if any)" >> ~/wsprd/wlogs/wwcount.rpt
 
  echo "Count & Listing for 6m" >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 50\.29' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
@@ -161,19 +163,24 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  totcnt=$(($cnt1 + $cnt2))
  echo " 40m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
 
- echo "Count & Listing for 80m [both new/old whichever has been selected]" >> ~/wsprd/wlogs/wwcount.rpt
+ echo "Count & Listing for 80m [both new/old, whichever has been selected in the band script]" >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.56' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.57' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.58' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.59' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
  grep ' 3\.60' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 3\.57' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 3\.58' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt3=$(  grep  ' 3\.59' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt4=$(  grep  ' 3\.60' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4))
+ cnt1=$(  grep  ' 3\.56' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ cnt2=$(  grep  ' 3\.57' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ cnt3=$(  grep  ' 3\.58' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ cnt4=$(  grep  ' 3\.59' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ cnt5=$(  grep  ' 3\.60' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4 + $cnt5))
  echo " 80m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
- # allowing for old 80m wspr frequency still in use 
+ # allowing for old 80m wspr frequency 3.5926 still in use 
  
+ # Pl Note: A space before, as well as two decimal points, are given for each frequency
+# because otherwise the program is giving false positives by picking up values like
+# -21.0 in some other column of log file spot record such as SNR or DT
  
  less  ~/wsprd/wlogs/wwcount.rpt 
  echo

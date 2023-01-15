@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-14 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-15 by VU3ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -8,7 +8,7 @@
 # and run ntp timw synchronization# Create a record of latest backup in wwlatestbackup.txt
 # and also add the valid & invalid WSPR spots found in the latest log file (here b1.log after backups)
 # to cumulative logs wwvalidlist.log & wwinvalidlist.log
-# Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wwuser.txt, wwlatestbackup.txt
+# Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wspruser.tx, wwlatestbackup.txt
 # Initialize the wsprd.log, wsprband.txt and wsprbandtime.txt files
 
 # recovering description of previous band
@@ -90,8 +90,8 @@ sleep 2
 # Now backs up the old ~/wsprd/wlogs/wwvalidlist.log  and ~/wsprd/wlogs/wwinvalidlist.log to backups folder
 cp ~/wsprd/wlogs/wwvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
-# Now backs up the old ~/wsprd/wlogs/wwuser.txt to backups folder
-cp ~/wsprd/wlogs/wwuser.txt ~/wsprd/wlogs/backups/
+# Now backs up the old ~/wsprd/wlogs/wspruser.tx to backups folder
+cp ~/wsprd/wlogs/wspruser.tx ~/wsprd/wlogs/backups/
 # Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
 cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
 

@@ -6,6 +6,8 @@
 # Also displays the name of the band script in use, and the band parameters used
 echo
 cat ~/wsprd/wlogs/wsprband.txt
+cat ~/wsprd/wlogs/wsprbandtime.txt
+
 echo
 
 # end of file
