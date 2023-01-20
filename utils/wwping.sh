@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-20 by VU3ZAN Sunil Aruldas
 # Bash file 'wwping.sh' to check on both network and
 # internet connectivity, with 5 pings each
 echo
@@ -9,11 +9,11 @@ echo "over a 5 second period each"
 echo
 echo "Network"
 echo
-sudo ping -c 5 0
+ping -c 5 0
 echo
 echo "Internet"
 echo
-sudo ping -c 5 www.google.com
+ping -c 5 www.google.com
 echo
 
 # end of file

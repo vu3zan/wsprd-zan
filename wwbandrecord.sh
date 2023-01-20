@@ -49,7 +49,7 @@
        curr_script="* * * * Using band script    : ""$this_script"
     curr_parameter="* * * * Using band parameter ::""$this_parameter"
               echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt           
-              echo "$curr_script" >> ~/wsprd/wlogs/wsprband.tx
+              echo "$curr_script" >> ~/wsprd/wlogs/wsprband.txt
               echo "$curr_parameter" >> ~/wsprd/wlogs/wsprband.txt
 # recording time of current band activation for use when the next band is activated (formatted to line up)
               echo "* * * * ""$(date)" > ~/wsprd/wlogs/wsprbandtime.txt

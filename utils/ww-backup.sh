@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-15 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-20 by VU3ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -90,8 +90,8 @@ sleep 2
 # Now backs up the old ~/wsprd/wlogs/wwvalidlist.log  and ~/wsprd/wlogs/wwinvalidlist.log to backups folder
 cp ~/wsprd/wlogs/wwvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
-# Now backs up the old ~/wsprd/wlogs/wspruser.tx to backups folder
-cp ~/wsprd/wlogs/wspruser.tx ~/wsprd/wlogs/backups/
+# Now backs up the old ~/wsprd/wlogs/wspruser.txt to backups folder
+cp ~/wsprd/wlogs/wspruser.txt ~/wsprd/wlogs/backups/
 # Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
 cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
 

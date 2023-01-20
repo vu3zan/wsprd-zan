@@ -44,11 +44,11 @@
 
 # Using bandparam variable (1, 2 or 3)  as set above  
     if [ "$bandparam" -eq 1 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 20m  -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 20m  -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     elif [ "$bandparam" -eq 2 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.0956M  -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.0956M  -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     else  
- ~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.095600M  -c   VU3ZAN -l   MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+ ~/rtlsdr-wsprd/rtlsdr_wsprd -f 14.095600M  -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     fi
 
 # This WSPR session will normally continue until it is killed preparatory to the next session for next band.
