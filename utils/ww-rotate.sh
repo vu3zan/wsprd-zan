@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # bash file 'ww-rotate.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to rotate 6 band files by renaming them as 1 to 6 in rotation, triggered by crontab at 9.55am every day
 # when the rotation feature has been activated through crontab

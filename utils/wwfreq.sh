@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwfreq.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # and to use it as default without giving any file name.
 # to list Dial frequencies of band change in a file ~/wsprd/wlogs/wwfreq.rpt

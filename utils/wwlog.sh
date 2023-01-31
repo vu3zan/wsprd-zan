@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwlog.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to view it as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backups/ 

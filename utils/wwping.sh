@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-20 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwping.sh' to check on both network and
 # internet connectivity, with 5 pings each
 echo

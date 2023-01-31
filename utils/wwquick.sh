@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-15 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # bash file 'wwquick.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/
 # to use it as default without giving any file name.
 # to simply count ALL Spots frequency wise, in a file ~/wsprd/wlogs/wwquick.rpt

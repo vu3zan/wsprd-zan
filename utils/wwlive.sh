@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # bash file 'wwlive.sh' for Guenael rtlsdr_wsprd running in ~/rtlsdr-wsprd/
 # to show process service output for this file and for the crontab scheduling service
 # and to thus know whether they are running

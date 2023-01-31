@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-20 by --VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by --VU3*ZAN Sunil Aruldas
 # bash file 'ww-newuser.sh' for Guenael rtlsdr_wsprd
 # This will first show existing callsign and grid location (of existing user)
 # already written to ~/wsprd/wlogs/wspruser.txt

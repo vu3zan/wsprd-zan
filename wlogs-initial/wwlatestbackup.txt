@@ -1,3 +1,1 @@
 Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsprd
-Sun 15 Jan 2023 10:55:17 AM IST
-Jan 15 10:55:18 raspberrypi systemd-timedated[32553]: Set NTP to enabled (systemd-timesyncd.service).

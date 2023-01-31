@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# Last mod 2023-01-14 by --VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
-# This script is for ## 15m, located in ~/wsprd, and ORIGINALLY NAMED 3mR.sh
+# This script is for ## 40m, located in ~/wsprd, and ORIGINALLY NAMED 5mR.sh
 
 # HOWEVER the SCRIPT NAMES WILL CHANGE DAILY on a ROTATION basis as 1/2/3/4/5/6m5 [this is normal !!], 
 # in order to provide a "changing time slot access" to different bands at different times of day
@@ -12,13 +12,13 @@
 # See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
 
 # Variables for this band name, script name and band parameter are set below and passed to script wwbandrecord.sh
-    this_band="15"
+    this_band="40"
     this_script=$(basename -- "$0")
 # Setting band parameter as 1, 2 or 3   
     bandparam=1
-    if [ "$bandparam" -eq 1 ]; then    this_parameter="15m" 
-    elif [ "$bandparam" -eq 2 ]; then    this_parameter="21.0946M"
-    else    this_parameter="21.094600M" 
+    if [ "$bandparam" -eq 1 ]; then    this_parameter="40m" 
+    elif [ "$bandparam" -eq 2 ]; then    this_parameter="7.0386M"
+    else    this_parameter="7.038600M"
     fi
 # PL NOTE: 'variable bandparam' is also used below to select the appropriate one of three script lines provided
 
@@ -45,7 +45,6 @@
 # Activation of new WSPR session [a new instance of rtlsdr_wsprd] 
 # Here please type the ## -f BAND NAME/FREQUENCY, ## -c CALLSIGN (12 chars max), ## -l grid LOCATION (6 chars max). 
 # Default gain is -g 29
-
 # [ PL NOTE: Three readymade script lines are provided using different parameters :
 # either Band name, Band frequency, or Band frequency with additional 2 zeroes.
 # Which one is selected depends on the value of the variable 'bandparam' which is set to 1, 2 or 3 at the top of this script.
@@ -53,16 +52,15 @@
 
 # Using bandparam variable (1, 2 or 3)  as set above  
     if [ "$bandparam" -eq 1 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 15m -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 40m -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     elif [ "$bandparam" -eq 2 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 21.0946M -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.0386M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     else  
- ~/rtlsdr-wsprd/rtlsdr_wsprd -f 21.094600M -c   A1XYZ -l   AB12cd -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+ ~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.038600M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     fi
 
 # This WSPR session will normally continue until it is killed preparatory to the next session for next band.
 
 
 # END of file
-
  

@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Last mod 2023-01-20 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
 # Create a record of latest backup in ~/wsprd/wlogs/wwlatestbackup.txt
-# and run ntp timw synchronization# Create a record of latest backup in wwlatestbackup.txt
+# and run ntp time synchronization# Create a record of latest backup in wwlatestbackup.txt
 # and also add the valid & invalid WSPR spots found in the latest log file (here b1.log after backups)
 # to cumulative logs wwvalidlist.log & wwinvalidlist.log
 # Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wspruser.tx, wwlatestbackup.txt
@@ -33,9 +33,6 @@
  # Since this causes it to dump all records of previous band to the wsprd.log file, the activation time 
  # and name of previous band need to be written to the file first, which has been taken care of above.
 
-# TESTING ###########################
-cp ~/wsprd/wlogs/wsprd.log ~/wsprd/wlogs/backups/wsprd-test.log
-
 # first kill any rtlsdr_wsprd daemon that may be running, to avoid possible problems
 	pgrep rtlsdr_wsprd > /dev/null 2>&1
 		if [ $? -eq 0 ]; then
@@ -51,21 +48,22 @@ echo "Time of latest backup taken for Utility Environment for Guenael rtlsdr_wsp
 date >> ~/wsprd/wlogs/wwlatestbackup.txt 
 
 # Synchronize the system time with NTP, once a day
-	sudo timedatectl set-ntp true
+#	sudo timedatectl set-ntp true
     
-grep NTP /var/log/syslog > ~/wsprd/wlogs/temp.txt && \
-tail ~/wsprd/wlogs/temp.txt >> ~/wsprd/wlogs/wwlatestbackup.txt && \
-rm ~/wsprd/wlogs/temp.txt && cat ~/wsprd/wlogs/wwlatestbackup.txt 
+# grep NTP /var/log/syslog > ~/wsprd/wlogs/temp.txt && \
+# tail ~/wsprd/wlogs/temp.txt >> ~/wsprd/wlogs/wwlatestbackup.txt && \
+# rm ~/wsprd/wlogs/temp.txt && cat ~/wsprd/wlogs/wwlatestbackup.txt 
 
 #### CARE CARE CARE -- it seems in raspbian bullseye the systemd-timesyncd is favoured over ntp
 # sudo timedateclt set-ntp true sometimes gives "Failed to set ntp. ntp not supported"
 # and anyway systemd-timesyncd is taking over it seems
-# maybe this time synchronization should be disabled
+# ALSO NOWADAYS SUDO REQUIRES PASSWORD SO THE SCRIPT COMMAND DOES NOT RUN AND THUS NO LOG ENTRY ALSO
+# HENCE this time synchronization IS DISABLED w
 
 # SEQUENTIAL BUCKET BACKUPS -- total 8 backups
 # First delete oldest file i.e b8.log. 
 # Next rename 2nd oldest as oldest i.e b7.log as b8.log, and so on.
-# Lastly rename wsprd.log as b1.log
+# Lastly rename wsprd.log as b1.log and later create a new wsprd.log with a heading line
 rm ~/wsprd/wlogs/backups/b8.log
 sleep 2
 mv ~/wsprd/wlogs/backups/b7.log  ~/wsprd/wlogs/backups/b8.log
@@ -76,7 +74,8 @@ mv ~/wsprd/wlogs/backups/b5.log  ~/wsprd/wlogs/backups/b6.log
 sleep 2
 mv ~/wsprd/wlogs/backups/b4.log  ~/wsprd/wlogs/backups/b5.log
 sleep 2
-mv ~/wsprd/wlogs/backups/b3.log  ~/wsprd/wlogs/backups/b4.log
+mv ~/wsprd/wlogs/backups/b3.log  ~/wsprd/wlogs/backups/b4.log# HENCE this time synchronization IS DISABLED disabled
+
 sleep 2
 mv ~/wsprd/wlogs/backups/b2.log  ~/wsprd/wlogs/backups/b3.log
 sleep 2

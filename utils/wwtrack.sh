@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-09 by VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwtrack.sh' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
 # to view it as default without giving any file name.
 # Used thus "bash wwtrack.sh" 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-15, by --VU3ZAN Sunil Aruldas
+# Last mod 2023-01-26, by VU3*ZAN Sunil Aruldas
 # Bash file 'wwbandrecord.sh' for recovering and recording the band name and time for
 # activation of fixed and rotating bands in the utility environment for  ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
@@ -76,7 +76,7 @@
    fi
 
 # The user's callsign and grid location are written in ~/wsprd/wlogs/wspruser.txt
-# Note : THE DEFAULTS FOR FRESH INSTALLTIONS ARE : callsign= ---A1xyz & grid location= ---AB12cd
+# Note : THE DEFAULTS FOR FRESH INSTALLTIONS ARE : callsign= ---A1*xyz & grid location= ---AB12*cd
 # --------------------------------------------------------------------------------------------
 # All references to these in band scripts, & the bandrecord script, need to be changed for the new user.
 # And this is now handled through the menu script itself  -- wwmenu.sh
