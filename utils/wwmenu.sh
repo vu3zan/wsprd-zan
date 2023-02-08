@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwmenu.sh' for running utility scripts for utility environment for
 # Guenael rtlsdr_wsprd 
 # This file is located in $HOME and calls $HOME/wsprd/utils/wwhelp.sh to display the menu
@@ -73,6 +73,7 @@ do
 				echo "* ""$gmenu"" *"
 				echo "Sorry! This entry is not accepted"
 				echo Please enter Menu numbers 1 to 12, or '00' only
+				gmenu==""
 				echo;;
 		esac
 	

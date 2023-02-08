@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
 # bash file 'wwcallsign.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log
 # to use it as default without giving any file name.
 # to put all 'callsign' Spots in a file ~/wsprd/wlogs/wwcallsign.rpt
@@ -16,12 +16,14 @@
 echo
 echo "This is Utility Script '** wwcallsign.sh **' for Guenael rtlsdr_wsprd log" 
 echo
+fullfile=""
+while [[ -z $fullfile ]];
+do
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo "or 'valid' for using the wwvalidlist.log"
 echo
 read -p "Entry ?  " genfile
 
-fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
 if 
@@ -36,15 +38,21 @@ else
 		valid)
 			genfile2="ww""$genfile""list.log"
 			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		q)
+			echo
+			echo " ... quitting ..."
+			echo
+			exit;;
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid'"
 			echo
-			exit;;
+			fullfile="";; 
+			# acts as flag
 	esac
 
 fi
+done
 
 # Now asks for callsign or first few letters
 gencall=""

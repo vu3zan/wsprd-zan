@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -58,7 +58,7 @@ date >> ~/wsprd/wlogs/wwlatestbackup.txt
 # sudo timedateclt set-ntp true sometimes gives "Failed to set ntp. ntp not supported"
 # and anyway systemd-timesyncd is taking over it seems
 # ALSO NOWADAYS SUDO REQUIRES PASSWORD SO THE SCRIPT COMMAND DOES NOT RUN AND THUS NO LOG ENTRY ALSO
-# HENCE this time synchronization IS DISABLED w
+# HENCE this time synchronization IS DISABLED 
 
 # SEQUENTIAL BUCKET BACKUPS -- total 8 backups
 # First delete oldest file i.e b8.log. 
@@ -74,8 +74,7 @@ mv ~/wsprd/wlogs/backups/b5.log  ~/wsprd/wlogs/backups/b6.log
 sleep 2
 mv ~/wsprd/wlogs/backups/b4.log  ~/wsprd/wlogs/backups/b5.log
 sleep 2
-mv ~/wsprd/wlogs/backups/b3.log  ~/wsprd/wlogs/backups/b4.log# HENCE this time synchronization IS DISABLED disabled
-
+mv ~/wsprd/wlogs/backups/b3.log  ~/wsprd/wlogs/backups/b4.log
 sleep 2
 mv ~/wsprd/wlogs/backups/b2.log  ~/wsprd/wlogs/backups/b3.log
 sleep 2
@@ -96,12 +95,12 @@ cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
 
 # now adds valid wspr entries found in latest backup b1.log
 # (i.e. ~/wsprd/wlogs/backups/b1.log) to ~/wsprd/wlogs/wwvalidlist.log
-grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA\|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
+grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
 
 # now adds invalid wspr entries found in latest backup b1.log to ~/wsprd/wlogs/wwinvalidlist.log
 # grep -E '<...>' ~/wsprd/wlogs/backups/b1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
-grep -E "<...>\|<A000AA" ~/wsprd/wlogs/backups/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
+grep -E "<...>|A000AA" ~/wsprd/wlogs/backups/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
 
 # now create new wsprd.log file with a heading line

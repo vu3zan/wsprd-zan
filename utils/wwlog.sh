@@ -15,12 +15,17 @@
 echo
 echo "This is Utility Script '** wwlog.sh **' for Guenael rtlsdr_wsprd log" 
 echo
+
+# testing
+fullfile=""
+while [[ -z $fullfile ]];
+do
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo "or 'valid / invalid' for using the wwvalidlist.log / wwinvalidlist.log"
+echo "or Q to quit ..."
 echo
 read -p  "Entry ?  "  genfile
 
-fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
 if 
@@ -38,15 +43,22 @@ else
 		invalid)
 			genfile2="ww""$genfile""list.log"
 			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		q)
+			echo
+			echo " ... quitting ..."
+			echo
+			exit;;
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid' or 'invalid'"
 			echo
-			exit;;
+			fullfile="";; 
+			# acts as flag
 	esac
 
 fi
+done
+# testing done
 
 echo " * File under analysis : ""$fullfile"
 echo "Able to view the current log file as default without giving any file name."

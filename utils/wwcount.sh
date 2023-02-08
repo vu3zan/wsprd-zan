@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwcount.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log
 # to use as default without giving any file name.
 # to put all Spots, and then all NON 'A000AA'& '<...>' Spots, counted frequency wise, in a file ~/wsprd/wlogs/wwcount.rpt 
@@ -14,12 +14,14 @@
 echo
 echo "This is Utility Script '** wwcount.sh **' for Guenael rtlsdr_wsprd log" 
 echo
+fullfile=""
+while [[ -z $fullfile ]];
+do
 echo "Please enter Blank for Default (wsprd.log) or b1 to b8 for 8 days backup logs"
 echo "or 'valid' for using the wwvalidlist.log"
 echo
 read -p  "Entry ?  "  genfile
 
-fullfile=""
 logfile="$HOME/wsprd/wlogs/wsprd.log"
 
 if 
@@ -34,15 +36,21 @@ else
 		valid)
 			genfile2="ww""$genfile""list.log"
 			fullfile="$HOME/wsprd/wlogs/""$genfile2";;
+		q)
+			echo
+			echo " ... quitting ..."
+			echo
+			exit;;
 		*)
 			echo
 			echo "Sorry! No such file exists/permitted"
-			echo "Please enter Blank for default, or file name 'b1' to 'b8' only, or 'valid'"
 			echo
-			exit;;
+			fullfile="";; 
+			# acts as flag
 	esac
 
 fi
+done
 
 echo " * File under analysis : ""$fullfile"
 
@@ -57,6 +65,7 @@ echo " * File under analysis : ""$fullfile"
  echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wlogs/wwcount.rpt
  echo >> ~/wsprd/wlogs/wwcount.rpt
 echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
+ echo "...working..."
 
 
 
@@ -124,56 +133,56 @@ echo " * Report File  : ~/wsprd/wlogs/wwcount.rpt"
  echo "VALID SPOTs ONLY - WITHOUT 'A000AA' and '<...>' cases (if any)" >> ~/wsprd/wlogs/wwcount.rpt
 
  echo "Count & Listing for 6m" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 50\.29' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 50\.30' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 50\.29' "$fullfile" | grep -v -E "A000AA\|<...>"  -c  )
- cnt2=$(  grep  ' 50\.30' "$fullfile" | grep -v -E "A000AA\|<...>"  -c  )
+ grep ' 50\.29' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 50\.30' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 50\.29' "$fullfile" | grep -v -E "A000AA|<...>"  -c  )
+ cnt2=$(  grep  ' 50\.30' "$fullfile" | grep -v -E "A000AA|<...>"  -c  )
  totcnt=$(($cnt1 + $cnt2))
  echo " 6m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
  
  echo "Count & Listing for 10m" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 28\.12' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 28\.13' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 28\.12' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 28\.13' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ grep ' 28\.12' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 28\.13' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 28\.12' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt2=$(  grep  ' 28\.13' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
  totcnt=$(($cnt1 + $cnt2))
  echo "  10m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
 
  echo "Count & Listing for 15m" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 21\.09' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 21\.10' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 21\.09' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 21\.10' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ grep ' 21\.09' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 21\.10' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 21\.09' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt2=$(  grep  ' 21\.10' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
  totcnt=$(($cnt1 + $cnt2))
  echo " 15m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
 
  echo "Count & Listing for 20m" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 14\.09' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 14\.10' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 14\.09' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 14\.10' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ grep ' 14\.09' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 14\.10' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 14\.09' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt2=$(  grep  ' 14\.10' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
  totcnt=$(($cnt1 + $cnt2))
  echo " 20m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt
  
  echo "Count & Listing for 40m" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 7\.03' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 7\.04' $fullfile | grep -v -E "A000AA\|<...>" >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 7\.03' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 7\.04' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ grep ' 7\.03' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 7\.04' $fullfile | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 7\.03' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt2=$(  grep  ' 7\.04' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
  totcnt=$(($cnt1 + $cnt2))
  echo " 40m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
 
  echo "Count & Listing for 80m [both new/old, whichever has been selected in the band script]" >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 3\.56' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 3\.57' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 3\.58' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 3\.59' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- grep ' 3\.60' $fullfile | grep -v -E "A000AA\|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
- cnt1=$(  grep  ' 3\.56' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt2=$(  grep  ' 3\.57' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt3=$(  grep  ' 3\.58' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt4=$(  grep  ' 3\.59' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
- cnt5=$(  grep  ' 3\.60' "$fullfile" | grep -v -E "A000AA\|<...>" -c  )
+ grep ' 3\.56' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.57' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.58' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.59' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ grep ' 3\.60' $fullfile | grep -v -E "A000AA|<...>"  >> ~/wsprd/wlogs/wwcount.rpt
+ cnt1=$(  grep  ' 3\.56' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt2=$(  grep  ' 3\.57' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt3=$(  grep  ' 3\.58' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt4=$(  grep  ' 3\.59' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
+ cnt5=$(  grep  ' 3\.60' "$fullfile" | grep -v -E "A000AA|<...>" -c  )
  totcnt=$(($cnt1 + $cnt2 + $cnt3 + $cnt4 + $cnt5))
  echo " 80m count : ""$totcnt" >> ~/wsprd/wlogs/wwcount.rpt 
  # allowing for old 80m wspr frequency 3.5926 still in use 
