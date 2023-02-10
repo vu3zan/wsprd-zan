@@ -1,3 +1,9 @@
-/home/sunil/wsprd/fftw_wisdom.dat
-/home/sunil/wsprd/docs/fftw_wisdom.dat
-/home/sunil/wsprd/utils/fftw_wisdom.dat
+fftw_wisdom.dat
+docs/fftw_wisdom.dat
+utils/fftw_wisdom.dat
+# Rotating band files are renamed each day after backup, and this 
+# should not be tracked by git, so '*mR.sh' is included in .gitignore file.
+# Comment out the line if you want tracking due to scripting changes,
+# then remove the comment after add+commit+push+status
+*mR.sh
+# does this work ???
