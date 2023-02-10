@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
 # Bash file 'wwlog.sh' for Guenael rtlsdr_wsprd current log in ~/wsprd/wlogs/wsprd.log 
 # to view it as default without giving any file name.
 # Also read the backup logs in $HOME/wsprd/wlogs/backups/ 
@@ -16,7 +16,6 @@ echo
 echo "This is Utility Script '** wwlog.sh **' for Guenael rtlsdr_wsprd log" 
 echo
 
-# testing
 fullfile=""
 while [[ -z $fullfile ]];
 do
@@ -58,7 +57,6 @@ else
 
 fi
 done
-# testing done
 
 echo " * File under analysis : ""$fullfile"
 echo "Able to view the current log file as default without giving any file name."
