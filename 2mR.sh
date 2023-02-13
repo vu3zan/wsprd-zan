@@ -4,7 +4,7 @@
 # Arrangement for a form of WSPR band hopping using WSPR daemon ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
 
-# This script is for ## 10m, located in ~/wsprd, and ORIGINALLY NAMED 2mR.sh
+# This script is for ## 40m, located in ~/wsprd, and ORIGINALLY NAMED 5mR.sh
 
 # HOWEVER the SCRIPT NAMES WILL CHANGE DAILY on a ROTATION basis as 1/2/3/4/5/6m5 [this is normal !!], 
 # in order to provide a "changing time slot access" to different bands at different times of day
@@ -12,13 +12,13 @@
 # See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
 
 # Variables for this band name, script name and band parameter are set below and passed to script wwbandrecord.sh
-    this_band="10"
+    this_band="40"
     this_script=$(basename -- "$0")
 # Setting band parameter as 1, 2 or 3   
-    bandparam=2
-    if [ "$bandparam" -eq 1 ]; then    this_parameter="10m" 
-    elif [ "$bandparam" -eq 2 ]; then    this_parameter="28.1246M" 
-    else    this_parameter="28.124600M"
+    bandparam=1
+    if [ "$bandparam" -eq 1 ]; then    this_parameter="40m" 
+    elif [ "$bandparam" -eq 2 ]; then    this_parameter="7.0386M"
+    else    this_parameter="7.038600M"
     fi
 # PL NOTE: 'variable bandparam' is also used below to select the appropriate one of three script lines provided
 
@@ -52,15 +52,15 @@
 
 # Using bandparam variable (1, 2 or 3)  as set above  
     if [ "$bandparam" -eq 1 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 10m -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 40m -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     elif [ "$bandparam" -eq 2 ]; then 
-~/rtlsdr-wsprd/rtlsdr_wsprd -f 28.1246M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.0386M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     else  
- ~/rtlsdr-wsprd/rtlsdr_wsprd -f 28.124600M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
+ ~/rtlsdr-wsprd/rtlsdr_wsprd -f 7.038600M -c  VU3ZAN -l  MK90it -g 29 &>> ~/wsprd/wlogs/wsprd.log &
     fi
 
 # This WSPR session will normally continue until it is killed preparatory to the next session for next band.
 
 
 # END of file
-
+ 

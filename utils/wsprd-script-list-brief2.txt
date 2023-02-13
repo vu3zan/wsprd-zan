@@ -1,30 +1,28 @@
   
-  UTILITY SCRIPTS FOR  WSPRD OPERATION
-  ------------------------------------
-# 24hr logs from 10am, 8 days Backups
-# Current log, backups, & other reports  
-# FILE VIEWER: f/b/q = forward/back/quit
+BASIC  UTILITY  SCRIPTS  FOR USING WSPRD 
+----------------------------------------
+(24hr logs from 10am, &  8 days Backups)
+(Current log, backups,  & other reports) 
+(FILE VIEWER: f/b/q = forward/back/quit)
 
-  [Type Serial Number &  press 'ENTER']
-  -------------------------------------
+[Pl Type Serial Number &  press 'ENTER']
+----------------------------------------
   1 Is the WSPR program is running ?
-  2 Network & internet connections OK ?
-  3 Show the current WSPR band details
+  2 Network & internet connections  OK ?
+  3 Show the current WSPR BAND details .
  
-  4 List all the SPOTS during the day
-  5 QUICK bandwise count of total Spots 
+  4 LIST all the SPOTS during the day ..
+  5 QUICK bandwise count of total Spots.
   6.Detailed bandwise listing & count of
        total and valid Spots, separately
-
-  7 View the complete LOG File
-  8 Monitor progress in the Current Log
+  7 VIEW the complete LOG File
+  8 Monitor progress in the  Current Log
        -- (Ctrl-C, q to exit)
-
   9 Show wspr base Frequencies used
- 10 Show start Times [IST] for program
+ 10 Show starting Times for this program
 
- 11 CALLSIGN search, in Spots received
- 12 Change Existing User
+ 11 CALLSIGN  search, for Spots received 
+ 12 Change Existing USER
 
- 00. ------------------ EXIT THIS MENU
+ 00. ----------------- EXIT THIS MENU --
 

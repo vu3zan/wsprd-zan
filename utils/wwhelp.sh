@@ -5,9 +5,8 @@
 # to list them with a short description of each, for use with wwmenu.sh script,
 # by displaying the file ~/wsprd/utils/wsprd-script-list-for-menu.txt
 
-# cat ~/wsprd/utils/wsprd-script-list-for-menu.txt # detailed menu
-# cat ~/wsprd/utils/wsprd-script-list-brief.txt    # brief menu  
-  cat ~/wsprd/utils/wsprd-script-list-brief2.txt    # still briefer menu  :-)
+  cat ~/wsprd/utils/wsprd-script-list-brief2.txt
+# brief menu  suitable for moblie screen also  :-)
 
 
 # read user data from ~/wsprd/wlogs/wspruser.txt and print it
@@ -20,7 +19,7 @@ genfile="$HOME/wsprd/wlogs/wspruser.txt"
     done < "$genfile"
 
  echo "    ***""$ham_details""   ***"
- echo " --------------------------------------"
+ echo "----------------------------------------"
 
  exit
 # end of file

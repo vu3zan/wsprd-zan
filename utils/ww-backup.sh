@@ -92,8 +92,11 @@ cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wspruser.txt ~/wsprd/wlogs/backups/
 # Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
 cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
+# writes directory listing to ~/backchk.txt to verify that backup is working properly
+echo "$(date)" >> ~/backchk.txt
+ls ~/wsprd/wlogs/backups/* >> ~/backchk.txt
 
-# now adds valid wspr entries found in latest backup b1.log
+# now adds valid wspr entries that are found in the latest backup b1.log
 # (i.e. ~/wsprd/wlogs/backups/b1.log) to ~/wsprd/wlogs/wwvalidlist.log
 grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log

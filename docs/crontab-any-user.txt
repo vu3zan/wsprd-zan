@@ -1,29 +1,74 @@
- # Set of chrontabs for WSPRD band change
+# ------------------------------------------------------------------
+# NOTE: Weekdays are entered as 0 to 6 for Sunday - Saturday
+# Since the wsprd is for reception only, these schedules can be used with any antenna
+# although resonant antennas may give better results
+
+# Set of chrontabs for WSPRD BAND OPERATIONS
 # adjusted for any user
-# rotation files with R ending, fixed files with F ending
+# rotation band files have R ending, fixed band files have F ending
 
-
-# Set of ROTATING half hourly wsprd band changes throughout 24 hours
-# with backup at 0955 hrs, band script name rotation at 0957 hrs, 
-# and new band for the day at 1000 hrs
-# NOTE: FILES ARE RENAMED ON ROTATING BASIS BY ww-rotate.sh, withlog backed by ww-backup.sh
+# 1. Set of ROTATING Half Hourly wsprd band changes throughout 24 hours [SIX BANDS]
+# with backup at 0955 hrs, and the band script name rotation at 0957 hrs, 
+# thus giving a new band for starting the day at 1000 hrs --can be used with any antenna
+# NOTE: FILES ARE RENAMED ON ROTATING BASIS BY ww-rotate.sh, with wsprd.log backed by ww-backup.sh
 #   00 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/1mR.sh
 #   30 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/2mR.sh
 #   00 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/3mR.sh
 #   30 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/4mR.sh
 #   00 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/5mR.sh
 #   30 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/6mR.sh
-#   55     9                * * * $HOME/wsprd/utils/ww-backup.sh
-#   57     9                * * * $HOME/wsprd/utils/ww-rotate.sh
+#   55     10                * * * $HOME/wsprd/utils/ww-backup.sh
+#   57     10                * * * $HOME/wsprd/utils/ww-rotate.sh
 
 
-# modified set of wsprd [FIXED] band changes at 10am each week day, with 40m repeated on Sunday,
+# 2. Set of Daily wsprd band changes using FIXED band files
+# changing at 10am on each week day [SIX BANDS], --can be used with any antenna
+# thus new band every day, with 40m on both Saturday AND Sunday, 
 # with backup at 0955 hrs
+# Note : the first line is for Monday
    00 10 * * 1 $HOME/wsprd/80mF.sh
    00 10 * * 2 $HOME/wsprd/6mF.sh
-   00 10 * * 3 $HOME/wsprd/15mF.sh
-   00 10 * * 4 $HOME/wsprd/80mF.sh
-   00 10 * * 5 $HOME/wsprd/6mF.sh
-   00 10 * * 6 $HOME/wsprd/15mF.sh
-   00 10 * * 0 $HOME/wsprd/80mF.sh
+   00 10 * * 3 $HOME/wsprd/10mF.sh
+   00 10 * * 4 $HOME/wsprd/15mF.sh
+   00 10 * * 5 $HOME/wsprd/20F.sh
+   00 10 * * 6 $HOME/wsprd/40mF.sh
+   00 10 * * 0 $HOME/wsprd/40mF.sh
    55  9 * * * $HOME/wsprd/utils/ww-backup.sh
+
+# 3. Set of Daily wsprd band changes using FIXED band files
+# for 40m dipole and third harmonic 15m -- meant mainly for 40m dipole
+# changing at 10am each week day, with 40m on both Saturday AND Sunday
+# with backup at 0955 hrs
+# Note : the first line is for Monday
+#  00 10 * * 1 $HOME/wsprd/15mF.sh
+#  00 10 * * 2 $HOME/wsprd/40mF.sh
+#  00 10 * * 3 $HOME/wsprd/15mF.sh
+#  00 10 * * 4 $HOME/wsprd/40mF.sh
+#  00 10 * * 5 $HOME/wsprd/15F.sh
+#  00 10 * * 6 $HOME/wsprd/40mF.sh
+#  00 10 * * 0 $HOME/wsprd/40mF.sh
+#  55  9 * * * $HOME/wsprd/utils/ww-backup.sh
+
+# 3. Tri band for 40m dipole (and 15m) and 20m with [FIXED] band changes at 10am each week day, 
+# ----------with 40m on both Saturday AND Sunday
+# with backup at 0955 hrs
+# Note : the first line is for Monday
+#  00 10 * * 1 $HOME/wsprd/15mF.sh
+#  00 10 * * 2 $HOME/wsprd/20mF.sh
+#  00 10 * * 3 $HOME/wsprd/40mF.sh
+#  00 10 * * 4 $HOME/wsprd/15mF.sh
+#  00 10 * * 5 $HOME/wsprd/20F.sh
+#  00 10 * * 6 $HOME/wsprd/40mF.sh
+#  00 10 * * 0 $HOME/wsprd/40mF.sh
+#  55  9 * * * $HOME/wsprd/utils/ww-backup.sh
+
+
+
+
+
+
+
+
+
+
+
