@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-02-08 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-18 by VU3*ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -10,6 +10,7 @@
 # to cumulative logs wwvalidlist.log & wwinvalidlist.log
 # Also backup ~/wsprd/wlogs wwvalidlist.log, wwinvalidlist.log, wspruser.tx, wwlatestbackup.txt
 # Initialize the wsprd.log, wsprband.txt and wsprbandtime.txt files
+# Also copy certain logs/reports to ~/wsite/docs for viewing through browser using nginx & dataplicity porthole 
 
 # recovering description of previous band
     echo $'\n'"----------------------------------------------" >> ~/wsprd/wlogs/wsprd.log 
@@ -92,11 +93,8 @@ cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsprd/wlogs/backups/
 cp ~/wsprd/wlogs/wspruser.txt ~/wsprd/wlogs/backups/
 # Now backs up the old ~/wsprd/wlogs/wwlatestbackup.txt to backups folder
 cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
-# writes directory listing to ~/backchk.txt to verify that backup is working properly
-echo "$(date)" >> ~/backchk.txt
-ls ~/wsprd/wlogs/backups/* >> ~/backchk.txt
 
-# now adds valid wspr entries that are found in the latest backup b1.log
+# now adds valid wspr entries found in latest backup b1.log
 # (i.e. ~/wsprd/wlogs/backups/b1.log) to ~/wsprd/wlogs/wwvalidlist.log
 grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
 echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
@@ -117,5 +115,23 @@ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wl
     echo "$curr_band" > ~/wsprd/wlogs/wsprband.txt
 # recording time of current band activation for use when the next band is activated
     echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
+
+# Update script for providing docs for ~/wsite/docs for viewing through browser using dataplicity porthole
+# Note : ALL MUST BE .TXT FILES
+# only for system where website is there !!!
+if [[ -f "$HOME/wsite/index.html" ]];
+ then
+    cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/
+    cp ~/wsprd/wlogs/wspruser.txt ~/wsite/docs/
+    cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsite/docs/
+
+    cp ~/wsprd/wlogs/wwvalidlist.log ~/wsite/docs/wwvalidlist.txt
+    tail -n 50 ~/wsprd/wlogs/wwvalidlist.log > ~/wsite/docs/wwvalid.txt
+    cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsite/docs/wwinvalidlist.txt
+
+    cp ~/wsprd/wlogs/wsprd.log ~/wsite/docs/wsprd.txt
+    cp ~/wsprd/wlogs/backups/b1.log ~/wsite/docs/b1.txt
+fi
+
 
 # end of file

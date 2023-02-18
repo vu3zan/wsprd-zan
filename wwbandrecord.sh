@@ -54,6 +54,12 @@
 # recording time of current band activation for use when the next band is activated (formatted to line up)
               echo "* * * * ""$(date)" > ~/wsprd/wlogs/wsprbandtime.txt
 # 12 spaces given before above printouts for easy readability
+# copied to wsite
+# copy to website if it exists
+if [[ -f "$HOME/wsite/index.html" ]];
+then
+	cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/wsprband.txt
+fi
 
 # ADDITONAL STEP for DAY BEGIN
 # If the above variable curr_status has value 'DAYBEGIN' then
