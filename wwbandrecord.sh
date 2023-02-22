@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26, by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-21, by VU3*ZAN Sunil Aruldas
 # Bash file 'wwbandrecord.sh' for recovering and recording the band name and time for
 # activation of fixed and rotating bands in the utility environment for  ~/rtlsdr-wsprd/rtlsdr_wsprd
 # NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on Github. RESPECT!!
@@ -56,10 +56,6 @@
 # 12 spaces given before above printouts for easy readability
 # copied to wsite
 # copy to website if it exists
-if [[ -f "$HOME/wsite/index.html" ]];
-then
-	cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/wsprband.txt
-fi
 
 # ADDITONAL STEP for DAY BEGIN
 # If the above variable curr_status has value 'DAYBEGIN' then
@@ -81,11 +77,38 @@ fi
     # made curr_status NIL for the rest of the day
    fi
 
+# copies latest logs & reports to website (~/wsite)
+if [[ -f "$HOME/wsite/index.html" ]];
+then
+	# cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/wsprband.tx
+	# cp ~/wsprd/wlogs/wsprd.log ~/wsite/docs/wsprd.txt
+    conv2html="wsprband"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wsprd"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    # Check on the Spots decoded so far today
+    conv2html="wwspotlist"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    # Check on the WSPR Base Frequencies used so far
+    conv2html="wwfreqlist"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    # Check at what Times the WPRD daemon has been activated so far 
+    conv2html="wwtimelist"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+
+#    conv2html="wsprd"
+#     ( . $HOME/wsite/appn1/makehtml.sh )
+    
+fi
+
 # The user's callsign and grid location are written in ~/wsprd/wlogs/wspruser.txt
 # Note : THE DEFAULTS FOR FRESH INSTALLTIONS ARE : callsign= ---A1*xyz & grid location= ---AB12*cd
 # --------------------------------------------------------------------------------------------
 # All references to these in band scripts, & the bandrecord script, need to be changed for the new user.
 # And this is now handled through the menu script itself  -- wwmenu.sh
+#
+# check to records its running
+echo "$(date)" >> ~/wsprd/wlogs/wsprok.txt
 
 # exit
 return 

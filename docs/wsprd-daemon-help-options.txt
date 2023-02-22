@@ -1,3 +1,5 @@
+Printout of rtlsdr-wsprd help command
+
  rtlsdr_wsprd, a simple WSPR daemon for RTL receivers
 
 Use:	rtlsdr_wsprd -f frequency -c callsign -l locator [options]

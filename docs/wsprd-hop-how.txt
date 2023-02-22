@@ -1,38 +1,43 @@
-#  Last mod 24-11-2022 by VU3ZAN Sunil Aruldas
-# This script name is 1m5, ORIGINALLY for 6m, located in ~/wsprd, using rtlsdr_sdr daemon located in 
-# ~/rtlsdr-wsprd, and arranges a form of band hopping.
-# NOTE: FILE NAME WILL BE ROTATED WITH SERIAL NUMBERS 1/2/3/4/5/6m5  etc WHILE HOPPING WSPR BANDS
-# This launches rtlsdr_wsprd daemon for a given band, selected by crontab entries referring to script names.
-# See the ~/wsprd/samples/crontab-example.txt file for suggested entries.
-# Each band is accessed for half an hour. With 6 bands, the set takes 3 hours, and repeats 8 times in 24 hours.
-# So each band is accessed for half an hour in each 3 hour period.
-# At 0900 hours daily a backup is taken of ~/wsprd/wlogs/wsprd.log, and script names are rotated.
-# So files 1m5, 2m5, 3m5, 4m5, 5m5, and 6m5 are renamed as 2m5, 3m5, 4m5, 5m5, 6m5, and 1m5.
-# Rinse and repeat, as VK6FLAB Ono says
+	WSPRD-HOP-HOW.MD
+ Project Name :wsprd-zan
+ By Sunil VU3*ZAN
 
-# NOTE: rtlsdr_wsprd is a WSPR daemon by Guenael VA2GKA on github. RESPECT!!
+Last mod 2023-02-20 
 
-# I had earlier added "00" after the frequency, as it was found necessary 
-#   e.g. Frequency to be used = "50.293000M"
-# but from Dec 2022 the band can be used instead, here 6m
+We have band script files running the WSPRD daemon on fixed WSPR base frequencies in the 6m/10m/15m/20m/40m/80m bands,
+and these are named as 6mF.sh/10mF.sh/15mF.sh/20mF.sh/40mF.sh/80mF.sh -- the 'F' stands for 'Fixed'.
 
- Running rtlsdr_wsprd without any parameters will provide an extensive list of parameters available
-# File ~/wsprd/samples/wsprd-help.txt has the same details
-# File ~/wsprd/samples/wspr-freq.txt has a list of WSPR frequencies
+However we also have band script files named as 1mR.sh/2mR.sh/3mR.sh/4mR.sh/5mR.sh/6mR.sh-- the 'R' stands for 'Rotating.
+These scripts, located in ~/wsprd, are initially coded for WSPR base frequencies in the 6m/10m/15m/20m/40m/80m bands respectively.
+If now these scripts are renamed as 2mR.sh/3mR.sh/4mR.sh/5mR.sh/6mR.sh/1mR.sh/ respectively, the band operation will change
+accordingly.
+SO ROTATING THE FILE NAMES WITH SERIAL NUMBERS 1/2/3/4/5/6mR.sh will enable change of bands.
+
+The band scripts are launched by crontab entries referring to rotating script names.
+   00 10 * * * $HOME/wsprd/1mR.sh  will launch band script 1mR.sh at 10am each day
+    
+Each band is accessed for half an hour by crontab entries. 
+#   00 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/1mR.sh
+#   30 1,4,7,10,13,16,19,22 * * * $HOME/wsprd/2mR.sh
+#   00 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/3mR.sh
+#   30 2,5,8,11,14,17,20,23 * * * $HOME/wsprd/4mR.sh
+#   00 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/5mR.sh
+#   30 3,6,9,12,15,18,21,00 * * * $HOME/wsprd/6mR.sh
+#   55     9                * * * $HOME/wsprd/utils/ww-backup.sh
+#   57     9                * * * $HOME/wsprd/utils/ww-rotate.sh
 
 
- This script name is ## 1m5, ORIGINALLY for ## 6m, located in ~/wsprd 
-# Script names with serial numbers 1/2/3/4/5/6m5 originally refer to WSPR bands 6m/10m/15m/20m/40m/80m,
-# and are launched by crontab entries referring to script names, and thus different bands are accessed
-# at different times.
-# HOWEVER the script names will change daily on a rotation basis [this is normal!], in order to provide a 
-# pseudo random access to different bands at different times of day.
-# See the file ~/wsprd/samples/wsprd-hop-how.txt file for an explanation of the system.
+With 6 bands, the set takes 3 hours, and repeats 8 times in 24 hours.
+So each band is accessed for half an hour in each 3 hour period.
+At 0955 hours daily a backup is taken of the wsprd log and others, and at 0957 hours the script names are rotated.
+So files 1mR.sh/2mR.sh/3mR.sh/4mR.sh/5mR.sh/6mR.sh are renamed as 2mR.sh/3mR.sh/4mR.sh/5mR.sh/6mR.sh/1mR.sh
+So at 1000 hours a new band script lineup will come into play for the next 24 hours.
 
-# bash file 'wwbackup' for Guenael rtlsdr_wsprd log in ~/wsprd/wlogs/wsprd.log 
-# to update 8 sequential backups (wwbackup1 to 8), triggered by crontab at 9am every day
-# and also add the valid & invalid wspr entries to cumulative logs wwvalidlist.log & wwinvalidlist.log
+## Rinse and repeat ##, as VK6FLAB Ono says  :-]
 
-# Synchronize the system time with ntp, once a day
-#	sudo timedatectl set-ntp true
+This effectively provides a "changing time slot access" to different bands at different times of day,
+as a possibly acceptable (!) implementation of band hopping.
+Each half hour time slot in a day is accessed by one of 6 bands over a 6 day period. Over months, this should result in
+fairly good coverage ofthe WSPR bands .
 
+------------------------------------------------------------

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-02-18 by VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-22 by VU3*ZAN Sunil Aruldas
 # bash file 'ww-backup.sh' for Guenael wsprd current log ~/wsprd/wlogs/wsprd.log 
 # to update 8 sequential bucket backups (~/wsprd/wlogs/backups/b1.log to 8), 
 # triggered by crontab at 9.55am every day
@@ -97,12 +97,13 @@ cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsprd/wlogs/backups/
 # now adds valid wspr entries found in latest backup b1.log
 # (i.e. ~/wsprd/wlogs/backups/b1.log) to ~/wsprd/wlogs/wwvalidlist.log
 grep 'Spot :' ~/wsprd/wlogs/backups/b1.log | grep -v -E "A000AA|<...>" >> ~/wsprd/wlogs/wwvalidlist.log
-echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
+echo "**Recorded on : " "$(date)" >> ~/wsprd/wlogs/wwvalidlist.log
 
 # now adds invalid wspr entries found in latest backup b1.log to ~/wsprd/wlogs/wwinvalidlist.log
 # grep -E '<...>' ~/wsprd/wlogs/backups/b1.log | grep -v 'A000AA' >> ~/wsprd/wlogs/wwinvalidlist.log
 grep -E "<...>|A000AA" ~/wsprd/wlogs/backups/b1.log >> ~/wsprd/wlogs/wwinvalidlist.log
-echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
+# echo "Date for the set of above records : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
+echo "**Recorded on : " "$(date)" >> ~/wsprd/wlogs/wwinvalidlist.log
 
 # now create new wsprd.log file with a heading line
 echo "Log File for Guenael rtlsdr_wsprd" >  ~/wsprd/wlogs/wsprd.log
@@ -117,20 +118,43 @@ echo "For the FILE VIEWER, f / b / q = forward / backward / quit"  >> ~/wsprd/wl
     echo "$(date)" > ~/wsprd/wlogs/wsprbandtime.txt  
 
 # Update script for providing docs for ~/wsite/docs for viewing through browser using dataplicity porthole
-# Note : ALL MUST BE .TXT FILES
-# only for system where website is there !!!
+# Note : ALL CONVERTED TO HTML FILES
+# only for system where website "~/WSITE" is there !!!
 if [[ -f "$HOME/wsite/index.html" ]];
  then
-    cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/
-    cp ~/wsprd/wlogs/wspruser.txt ~/wsite/docs/
-    cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsite/docs/
+    # cp ~/wsprd/wlogs/wsprband.txt ~/wsite/docs/
+    # cp ~/wsprd/wlogs/wspruser.txt ~/wsite/docs/
+    # cp ~/wsprd/wlogs/wwlatestbackup.txt ~/wsite/docs/
+    # cp ~/wsprd/wlogs/wwvalidlist.log ~/wsite/docs/wwvalidlist.txt
+    # tail -n 50 ~/wsprd/wlogs/wwvalidlist.log > ~/wsite/docs/wwvalid.txt
+    # cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsite/docs/wwinvalidlist.txt
+    # cp ~/wsprd/wlogs/wsprd.log ~/wsite/docs/wsprd.txt
+    # cp ~/wsprd/wlogs/backups/b1.log ~/wsite/docs/b1.txt
+    # viewing the crontab schedule
+    # replaced by html conversion
+    
+    conv2html="wsprband"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wspruser"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wwlatestbackup"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wwvalidlist"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wwvalid50"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wwinvalidlist"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wsprd"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+     conv2html="b1"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    conv2html="wwschedule"
+     ( . $HOME/wsite/appn1/makehtml.sh )
 
-    cp ~/wsprd/wlogs/wwvalidlist.log ~/wsite/docs/wwvalidlist.txt
-    tail -n 50 ~/wsprd/wlogs/wwvalidlist.log > ~/wsite/docs/wwvalid.txt
-    cp ~/wsprd/wlogs/wwinvalidlist.log ~/wsite/docs/wwinvalidlist.txt
-
-    cp ~/wsprd/wlogs/wsprd.log ~/wsite/docs/wsprd.txt
-    cp ~/wsprd/wlogs/backups/b1.log ~/wsite/docs/b1.txt
+#   conv2html="b1"
+#     ( . $HOME/wsite/appn1/makehtml.sh )
+    
 fi
 
 

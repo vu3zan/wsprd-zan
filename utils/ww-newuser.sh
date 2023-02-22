@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Last mod 2023-01-26 by --VU3*ZAN Sunil Aruldas
+# Last mod 2023-02-22 by --VU3*ZAN Sunil Aruldas
 # bash file 'ww-newuser.sh' for Guenael rtlsdr_wsprd
 # This will first show existing callsign and grid location (of existing user)
 # already written to ~/wsprd/wlogs/wspruser.txt
@@ -9,6 +9,7 @@
 # bandrecord file in ~/wsprd,
 # changing the existing callsign to the given new callsign, and
 # the default grid location to the given new grid location
+# Details of new user copied to website '~/wsite'
 
 echo
 echo "This is Utility Script '** ww-newuser.sh **' for Guenael rtlsdr_wsprd" 
@@ -119,5 +120,17 @@ echo "$(date)" >> ~/wsprd/wlogs/wsprd.log
  echo "New User CallSign & Grid Location has been written to wspruser.txt" >> ~/wsprd/wlogs/wsprd.log
 echo "------------------------ " >> ~/wsprd/wlogs/wsprd.log
 echo
+
+# copies latest user details to website (~/wsite)
+if [[ -f "$HOME/wsite/index.html" ]];
+then
+	# cp ~/wsprd/wlogs/wspruser.txt ~/wsite/docs/wspruser.tx
+    
+    conv2html="wspruser"
+     ( . $HOME/wsite/appn1/makehtml.sh )
+    
+fi
+
+
   # end of file
 
